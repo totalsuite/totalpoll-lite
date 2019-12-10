@@ -1,0 +1,64 @@
+<script type="text/ng-template" id="questions-component-template">
+    <div class="totalpoll-questions-list">
+        <div class="totalpoll-questions-list-tabs"
+             dnd-list="$ctrl.items"
+             dnd-disable-if="$ctrl.items.length < 2">
+			<?php
+			/**
+			 * Fires before questions.
+			 *
+			 * @since 4.0.0
+			 */
+			do_action( 'totalpoll/actions/before/admin/editor/questions' );
+			?>
+            <div class="totalpoll-questions-list-tabs-item"
+                 ng-repeat="item in $ctrl.items"
+                 ng-class="{'active': $ctrl.isCurrentQuestion(item.uid)}"
+                 ng-click="$ctrl.setCurrentQuestion($index)"
+                 dnd-draggable="item"
+                 dnd-effect-allowed="move"
+                 dnd-moved="$ctrl.deleteQuestion($index, true, false)">
+                <div class="totalpoll-questions-list-tabs-item-title">
+					<?php _e( 'Question', 'totalpoll' ); ?>
+                    #{{$index+1}}
+                    <small>{{item.choices.length}}
+						<?php _e( 'Choices', 'totalpoll' ); ?>
+                    </small>
+                </div>
+                <button class="button button-danger button-small" type="button"
+                        ng-hide="$ctrl.items.length < 2"
+                        ng-click="$ctrl.deleteQuestion($index, false, true)">
+					<?php _e( 'Delete', 'totalpoll' ); ?>
+                </button>
+				<?php
+				/**
+				 * Fires after questions sidebar buttons.
+				 *
+				 * @since 4.0.0
+				 */
+				do_action( 'totalpoll/actions/admin/editor/questions/sidebar/buttons' );
+				?>
+            </div>
+
+            <div class="button button-primary" ng-click="$ctrl.addQuestion()">
+                <span class="dashicons dashicons-plus"></span>
+				<?php _e( 'New Question', 'totalpoll' ); ?>
+            </div>
+
+            <div class="dndPlaceholder totalpoll-questions-list-tabs-item totalpoll-questions-list-tabs-item-placeholder">
+				<?php _e( 'Move here', 'totalpoll' ); ?>
+            </div>
+
+			<?php
+			/**
+			 * Fires after questions.
+			 *
+			 * @since 4.0.0
+			 */
+			do_action( 'totalpoll/actions/after/admin/editor/questions' );
+			?>
+        </div>
+        <question ng-if="$ctrl.getCurrentQuestion()" item="$ctrl.getCurrentQuestion()" index="$ctrl.currentIndex"
+                  class="totalpoll-questions-list-item"></question>
+    </div>
+</script>
