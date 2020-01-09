@@ -142,6 +142,9 @@ class Log {
 		do_action( 'totalpoll/actions/admin/log/export/columns', $export, $entries );
 
 		foreach ( $entries as $entry ):
+
+            $poll = $entry->getPoll();
+
 			/**
 			 * Filters a row of exported log entries.
 			 *
@@ -159,7 +162,7 @@ class Log {
 					$entry->getDate(),
 					$entry->getIp(),
 					$entry->getUseragent(),
-					$entry->getPoll()->getTitle(),
+					$poll ? $poll->getTitle() : 'N/A',
 					$entry->getUserId() ?: 'N/A',
 					$entry->getUser()->user_login ?: 'N/A',
 					$entry->getUser()->display_name ?: 'N/A',

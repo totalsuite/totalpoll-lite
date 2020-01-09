@@ -2,6 +2,9 @@
 
 namespace TotalPoll\Shortcodes;
 
+use TotalPoll\Poll\Model;
+use TotalPollVendors\TotalCore\Form\Page;
+
 /**
  * Poll Shortcode.
  * @package TotalPoll\Shortcode
@@ -15,6 +18,9 @@ class Poll extends \TotalPollVendors\TotalCore\Shortcodes\Shortcode {
 	 * @return mixed|string
 	 */
 	public function handle() {
+		/**
+		 * @var Model|null $poll
+		 */
 		$poll = TotalPoll( 'polls.repository' )->getById( $this->getAttribute( 'id' ) );
 		if ( ! $poll ):
 			return __( 'Could not load the poll.', 'totalpoll' );
@@ -24,11 +30,26 @@ class Poll extends \TotalPollVendors\TotalCore\Shortcodes\Shortcode {
 		if ( $screen ):
 			// Override screen when rendering
 			add_filter( 'totalpoll/filters/render/screen', function ( $currentScreen, $renderedPoll ) use ( $poll, $screen ) {
-				if ( $renderedPoll->getId() || $poll->getId() ) :
+				if ( $renderedPoll->getId() === $poll->getId() ) :
+					if ( $screen === Model::VOTE_SCREEN && $poll->hasVoted() ) {
+						$poll->setError( new \WP_Error( 'voted_before', __( 'You cannot vote again.', 'totalpoll' ) ) );
+					} else {
+						$poll->setError( null );
+					}
+
 					return $screen;
 				endif;
 
 				return $currentScreen;
+			}, 10, 2 );
+
+			// Hide fields when vote is not allowed
+			add_filter( 'totalpoll/filters/form/pages', function ( $pages, $renderedPoll ) use ( $screen, $poll ) {
+				if ( $renderedPoll->getId() === $poll->getId() && $screen === Model::VOTE_SCREEN && ! $poll->isAcceptingVotes() ) :
+					$pages['fields'] = new Page();
+				endif;
+
+				return $pages;
 			}, 10, 2 );
 
 			// Override results visibility
@@ -45,13 +66,14 @@ class Poll extends \TotalPollVendors\TotalCore\Shortcodes\Shortcode {
 			);
 
 			// Hide buttons
-			add_filter( 'totalpoll/filters/form/buttons', function ( $buttons, $renderedPoll ) use ( $poll ) {
-				if ( $renderedPoll->getId() === $poll->getId() ) :
+			add_filter( 'totalpoll/filters/form/buttons', function ( $buttons, $renderedPoll ) use ( $screen, $poll ) {
+				if ( $renderedPoll->getId() === $poll->getId() && ( $screen !== Model::VOTE_SCREEN || ! $poll->isAcceptingVotes() ) ) :
 					return [];
 				endif;
 
 				return $buttons;
 			}, 10, 2 );
+
 		endif;
 
 		return $poll->render();

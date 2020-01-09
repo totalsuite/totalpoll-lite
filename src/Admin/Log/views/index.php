@@ -131,11 +131,11 @@
 
                         <tr ng-repeat="question in $ctrl.currentItem.get('poll.questions')">
                             <td>{{ question.content }}</td>
-                            <td ng-if="$ctrl.currentItem.get('details.skipped').indexOf(question.uid) != -1">
-                                <span class="totalpoll-log-browser-modal-status log-warning" style="margin-left: 0;"><?php _e('Skipped', 'totalpoll'); ?></span>
+                            <td ng-if="$ctrl.currentItem.get('details.skipped').indexOf(question.uid) !== -1">
+                                <div ng-repeat="choice in question.choices" ng-if="$ctrl.currentItem.get('choices').indexOf(choice.uid) != -1">{{ choice.label }}</div>
                             </td>
                             <td ng-if="$ctrl.currentItem.get('details.skipped').indexOf(question.uid) == -1">
-                                <div ng-repeat="choice in question.choices" ng-if="$ctrl.currentItem.get('choices').indexOf(choice.uid) != -1">{{ choice.label }}</div>
+                                <span class="totalpoll-log-browser-modal-status log-warning" style="margin-left: 0;"><?php _e('Skipped', 'totalpoll'); ?></span>
                             </td>
                         </tr>
                         <tr>

@@ -17,7 +17,7 @@
                 <span class="totalpoll-feature-details"
                       tooltip="<?php _e( 'Voting will be closed before reaching this date.', 'totalpoll' ); ?>">?</span>
             </label>
-            <input type="text" datetime-picker="<?php echo esc_attr( json_encode( [ 'format' => $dateTimeFormat ] ) ); ?>"
+            <input type="text" datetime-picker="<?php echo esc_attr( json_encode( [ 'format' => 'Y-m-d H:i', 'humanFormat' => $dateTimeFormat ] ) ); ?>"
                    class="totalpoll-settings-field-input widefat"
                    ng-model="editor.settings.vote.limitations.period.start">
         </div>
@@ -28,7 +28,7 @@
                 <span class="totalpoll-feature-details"
                       tooltip="<?php _e( 'Voting will be closed after reaching this date.', 'totalpoll' ); ?>">?</span>
             </label>
-            <input type="text" datetime-picker="<?php echo esc_attr( json_encode( [ 'format' => $dateTimeFormat ] ) ); ?>"
+            <input type="text" datetime-picker="<?php echo esc_attr( json_encode( [ 'format' => 'Y-m-d H:i', 'humanFormat' => $dateTimeFormat ] ) ); ?>"
                    class="totalpoll-settings-field-input widefat"
                    ng-model="editor.settings.vote.limitations.period.end">
         </div>

@@ -99,7 +99,7 @@ class Form extends \TotalPollVendors\TotalCore\Form\Form {
 
 			
 
-			$field = apply_filters( "totalpoll/filters/form/field/{$fieldSettings['type']}", $field, $fieldSettings);
+			$field = apply_filters( "totalpoll/filters/form/field/{$fieldSettings['type']}", $field, $fieldSettings );
 
 			if ( ! $field instanceof Field ) :
 				continue;
@@ -179,7 +179,7 @@ class Form extends \TotalPollVendors\TotalCore\Form\Form {
 	 */
 	public function fields() {
 		$screen = $this->poll->getScreen();
-		if ( $screen !== 'vote' ):
+		if ( $screen !== Model::VOTE_SCREEN ):
 			return null;
 		endif;
 
@@ -200,22 +200,24 @@ class Form extends \TotalPollVendors\TotalCore\Form\Form {
 				[
 					'type'  => 'submit',
 					'name'  => 'totalpoll[action]',
-					'value' => 'welcome',
+					'value' => Model::WELCOME_ACTION,
 					'class' => 'totalpoll-button totalpoll-button-primary totalpoll-buttons-continue',
 				],
 				__( 'Continue to vote', 'totalpoll' )
 			);
 		elseif ( $this->poll->isThankYouScreen() ):
-			$buttons[] = new \TotalPollVendors\TotalCore\Helpers\Html(
-				'button',
-				[
-					'type'  => 'submit',
-					'name'  => 'totalpoll[action]',
-					'value' => 'thankyou',
-					'class' => 'totalpoll-button totalpoll-button-primary totalpoll-buttons-continue',
-				],
-				__( 'Continue to results', 'totalpoll' )
-			);
+			if ( ! $this->poll->isResultsHidden() || ! empty( $this->poll->getHiddenResultsContent() ) ):
+				$buttons[] = new \TotalPollVendors\TotalCore\Helpers\Html(
+					'button',
+					[
+						'type'  => 'submit',
+						'name'  => 'totalpoll[action]',
+						'value' => Model::THANKYOU_ACTION,
+						'class' => 'totalpoll-button totalpoll-button-primary totalpoll-buttons-continue',
+					],
+					__( 'Continue to results', 'totalpoll' )
+				);
+			endif;
 		elseif ( $this->poll->isVoteScreen() ):
 			if ( $this->poll->getSettingsItem( 'results.visibility' ) === 'all' ):
 				$buttons[] = new \TotalPollVendors\TotalCore\Helpers\Html(
@@ -223,7 +225,7 @@ class Form extends \TotalPollVendors\TotalCore\Form\Form {
 					[
 						'type'  => 'submit',
 						'name'  => 'totalpoll[action]',
-						'value' => 'results',
+						'value' => Model::RESULTS_ACTION,
 						'class' => 'totalpoll-button totalpoll-buttons-results',
 					],
 					__( 'Results', 'totalpoll' )
@@ -235,7 +237,7 @@ class Form extends \TotalPollVendors\TotalCore\Form\Form {
 				[
 					'type'  => 'submit',
 					'name'  => 'totalpoll[action]',
-					'value' => 'vote',
+					'value' => Model::VOTE_ACTION,
 					'class' => 'totalpoll-button totalpoll-button-primary totalpoll-buttons-vote',
 				],
 				__( 'Vote', 'totalpoll' )
@@ -247,7 +249,7 @@ class Form extends \TotalPollVendors\TotalCore\Form\Form {
 					[
 						'type'  => 'submit',
 						'name'  => 'totalpoll[action]',
-						'value' => 'welcome',
+						'value' => Model::WELCOME_ACTION,
 						'class' => 'totalpoll-button totalpoll-buttons-back',
 					],
 					__( 'Back to vote', 'totalpoll' )

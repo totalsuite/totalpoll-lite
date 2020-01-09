@@ -100,7 +100,7 @@ var TotalPoll;
                     $poll.find('.totalpoll-container').hide();
                     _this.poll.transition.out(function () {
                         _this.poll.element.replaceWith($poll);
-                        var poll = new TotalPoll.Poll($poll, true);
+                        var poll = new TotalPoll.Poll($poll, true, _this.poll.config['behaviours']['async']);
                         poll.transition.in(function () {
                             poll.element.parent().css('min-height', 0);
                         });
@@ -120,6 +120,7 @@ var TotalPoll;
             this.poll = poll;
             this.currentSlide = 0;
             if (poll.screen === 'vote' || poll.screen === 'results') {
+                poll.element.find('.totalpoll-form-custom-fields').attr('totalpoll-valid-selection', 'true');
                 this.setupButtons(poll.element.find('.totalpoll-buttons'), poll.element.find('.totalpoll-button'));
                 this.setupSlides(poll.element.find('.totalpoll-question, .totalpoll-form-custom-fields:has(input)'));
             }
@@ -220,7 +221,7 @@ var TotalPoll;
     }());
     var ScrollUpBehaviour = /** @class */ (function () {
         function ScrollUpBehaviour(poll) {
-            if (poll.isViaAjax()) {
+            if (poll.isViaAjax() && !poll.isViaAsync()) {
                 setTimeout(function () {
                     jQuery('html, body').animate({ scrollTop: poll.element.offset().top - 100 }, 1000);
                 }, 200);
@@ -490,10 +491,12 @@ var TotalPoll;
      * Poll
      */
     var Poll = /** @class */ (function () {
-        function Poll(element, viaAjax) {
+        function Poll(element, viaAjax, viaAsync) {
             if (viaAjax === void 0) { viaAjax = false; }
+            if (viaAsync === void 0) { viaAsync = false; }
             this.element = element;
             this.viaAjax = viaAjax;
+            this.viaAsync = viaAsync;
             this.behaviours = {};
             this.config = {};
             this.screen = '';
@@ -566,6 +569,9 @@ var TotalPoll;
         };
         Poll.prototype.isViaAjax = function () {
             return this.viaAjax;
+        };
+        Poll.prototype.isViaAsync = function () {
+            return this.viaAsync;
         };
         return Poll;
     }());

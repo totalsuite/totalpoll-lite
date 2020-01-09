@@ -16,7 +16,28 @@ use TotalPollVendors\TotalCore\Traits\Cookies;
  * @since   1.0.0
  */
 class Model implements Renderable, ModelContract {
+
 	use Cookies;
+
+	const WELCOME_SCREEN = 'welcome';
+	const VOTE_SCREEN = 'vote';
+	const RESULTS_SCREEN = 'results';
+	const THANKYOU_SCREEN = 'thankyou';
+
+	const WELCOME_ACTION = 'welcome';
+	const VIEW_ACTION = 'view';
+	const VOTE_ACTION = 'vote';
+	const RESULTS_ACTION = 'results';
+	const THANKYOU_ACTION = 'thankyou';
+
+	const SORT_BY_POSITION = 'position';
+	const SORT_BY_LABEL = 'label';
+	const SORT_BY_VOTES = 'votes';
+	const SORT_BY_RAND = 'random';
+
+	const SORT_ASC = 'asc';
+	const SORT_DESC = 'desc';
+
 	/**
 	 * Poll ID.
 	 *
@@ -121,42 +142,42 @@ class Model implements Renderable, ModelContract {
 	 * @var string
 	 * @since 1.0.0
 	 */
-	protected $screen = 'welcome';
+	protected $screen = self::WELCOME_SCREEN;
 
 	/**
 	 * Poll current action
 	 * @var string
 	 * @since 4.0.0
 	 */
-	protected $action = 'view';
+	protected $action = self::VIEW_ACTION;
 
 	/**
 	 * Sort choices by field.
 	 * @var string
 	 * @since 1.0.0
 	 */
-	protected $sortChoicesBy = 'position';
+	protected $sortChoicesBy = self::SORT_BY_POSITION;
 
 	/**
 	 * Sort choices direction.
 	 * @var string
 	 * @since 1.0.0
 	 */
-	protected $sortChoicesDirection = 'desc';
+	protected $sortChoicesDirection = self::SORT_DESC;
 
 	/**
 	 * Sort results by field.
 	 * @var string
 	 * @since 1.0.0
 	 */
-	protected $sortResultsBy = 'position';
+	protected $sortResultsBy = self::SORT_BY_POSITION;
 
 	/**
 	 * Sort results direction.
 	 * @var string
 	 * @since 1.0.0
 	 */
-	protected $sortResultsDirection = 'desc';
+	protected $sortResultsDirection = self::SORT_DESC;
 
 	/**
 	 * Limitations
@@ -393,7 +414,7 @@ class Model implements Renderable, ModelContract {
 
 		// Screen
 		if ( $this->hasVoted() || ! $this->isAcceptingVotes() ):
-			$this->screen = 'results';
+			$this->screen = self::RESULTS_SCREEN;
 		endif;
 
 		/**
@@ -802,12 +823,12 @@ class Model implements Renderable, ModelContract {
 	 *
 	 * @return array
 	 */
-	public function getQuestions( $orderBy = null, $direction = 'ASC' ) {
+	public function getQuestions( $orderBy = null, $direction = self::SORT_ASC ) {
 		if ( $orderBy ):
 			foreach ( $this->questions as &$question ):
 				uasort( $question['choices'], [ $this, 'orderBy' . ucfirst( $orderBy ) ] );
 
-				if ( $direction && $direction === 'DESC' ):
+				if ( $direction && $direction === self::SORT_DESC ):
 					$question['choices'] = array_reverse( $question['choices'], true );
 				endif;
 			endforeach;
@@ -1305,7 +1326,7 @@ class Model implements Renderable, ModelContract {
 			endif;
 		endforeach;
 
-		return array_keys($questions);
+		return array_keys( $questions );
 	}
 
 	/**
@@ -1327,7 +1348,7 @@ class Model implements Renderable, ModelContract {
 	 *
 	 * @since 1.0.0
 	 */
-	public function setError( \WP_Error $error ) {
+	public function setError( $error ) {
 		$this->error = $error;
 	}
 
@@ -1846,27 +1867,27 @@ class Model implements Renderable, ModelContract {
 	 * @return bool
 	 */
 	public function isWelcomeScreen() {
-		return $this->isScreen( 'welcome' );
+		return $this->isScreen( self::WELCOME_SCREEN );
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isVoteScreen() {
-		return $this->isScreen( 'vote' );
+		return $this->isScreen( self::VOTE_ACTION );
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isThankYouScreen() {
-		return $this->isScreen( 'thankyou' );
+		return $this->isScreen( self::THANKYOU_SCREEN );
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isResultsScreen() {
-		return $this->isScreen( 'results' );
+		return $this->isScreen( self::RESULTS_SCREEN );
 	}
 }

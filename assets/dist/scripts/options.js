@@ -977,6 +977,7 @@ var TotalPoll;
         OptionsCtrl.prototype.saveOptions = function () {
             var _this = this;
             this.startProcessing();
+            this.options.expressions = this.expressions.user;
             return this.RepositoryService.postOptions(JSON.stringify(this.options))
                 .then(function (response) {
                 if (!response.error) {

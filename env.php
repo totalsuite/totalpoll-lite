@@ -8,7 +8,7 @@ return apply_filters(
 	'totalpoll/filters/environment',
 	array(
 		'name'           => 'TotalPoll',
-		'version'        => '4.1.1',
+		'version'        => '4.1.2',
 		'versions'       => array(
 			'wp'    => $GLOBALS['wp_version'],
 			'php'   => PHP_VERSION,
@@ -43,10 +43,10 @@ return apply_filters(
 			'charset'    => (string) $GLOBALS['wpdb']->get_charset_collate(),
 		),
 		'api'            => array(
-			'update'             => 'https://totalsuite.net/api/v1/products/totalpoll/update/',
-			'store'              => 'https://totalsuite.net/api/v1/products/totalpoll/store/{{license}}/',
-			'activation'         => 'https://totalsuite.net/api/v1/products/totalpoll/activate/',
-			'check-access-token' => 'https://totalsuite.net/api/v1/users/check/',
+			'update'             => 'https://totalsuite.net/api/v2/products/totalpoll/update/',
+			'store'              => 'https://totalsuite.net/api/v2/products/totalpoll/store/{{license}}/',
+			'activation'         => 'https://totalsuite.net/api/v2/products/totalpoll/activate/',
+			'check-access-token' => 'https://totalsuite.net/api/v2/users/check/',
 		),
 		'links'          => array(
 			'activation'     => admin_url( 'edit.php?post_type=poll&page=dashboard&tab=dashboard>activation' ),

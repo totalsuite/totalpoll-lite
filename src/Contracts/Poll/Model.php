@@ -413,7 +413,7 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 *
 	 * @since 1.0.0
 	 */
-	public function setError( \WP_Error $error );
+	public function setError( $error );
 
 	/**
 	 * @return bool
