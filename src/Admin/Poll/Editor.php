@@ -49,10 +49,10 @@ class Editor {
 	/**
 	 * Editor constructor.
 	 *
-	 * @param array               $env
+	 * @param array $env
 	 * @param \WP_Filesystem_Base $filesystem
-	 * @param PollRepository      $pollRepository
-	 * @param ModulesRepository   $modulesRepository
+	 * @param PollRepository $pollRepository
+	 * @param ModulesRepository $modulesRepository
 	 */
 	public function __construct( $env, $filesystem, PollRepository $pollRepository, ModulesRepository $modulesRepository ) {
 		$this->env               = $env;
@@ -142,6 +142,10 @@ class Editor {
 			TotalPoll( 'polls.defaults' )
 		);
 
+		if ( ! empty( $this->settings ) ):
+			$defaults['uid'] = '';
+		endif;
+
 		/**
 		 * Filters the information passed to frontend controller.
 		 *
@@ -185,6 +189,18 @@ class Editor {
 		wp_localize_script( 'totalpoll-admin-poll-editor', 'TotalPollTemplates', $this->templates );
 		wp_localize_script( 'totalpoll-admin-poll-editor', 'TotalPollLanguages', Misc::getSiteLanguages() );
 		wp_localize_script( 'totalpoll-admin-poll-editor', 'TotalPollI18n', $i18n );
+		wp_localize_script( 'totalpoll-admin-poll-editor', 'TotalPollPresets', [
+			'timeout' => [
+				'30'     => __( '30 Minutes', 'totalpoll' ),
+				'60'     => __( '1 Hour', 'totalpoll' ),
+				'360'    => __( '6 Hours', 'totalpoll' ),
+				'1440'   => __( '1 Day', 'totalpoll' ),
+				'10080'  => __( '1 Week', 'totalpoll' ),
+				'43800'  => __( '1 Month', 'totalpoll' ),
+				'262800' => __( '6 Months', 'totalpoll' ),
+				'525600' => __( '1 Year', 'totalpoll' )
+			]
+		] );
 	}
 
 	/**
@@ -307,11 +323,31 @@ class Editor {
 		$integrationTabs = apply_filters(
 			'totalpoll/filters/admin/editor/integration/tabs',
 			[
-				'shortcode' => [ 'label' => __( 'Shortcode', 'totalpoll' ), 'description' => __( 'WordPress feature', 'totalpoll' ), 'icon' => 'editor-code' ],
-				'widget'    => [ 'label' => __( 'Widget', 'totalpoll' ), 'description' => __( 'WordPress feature', 'totalpoll' ), 'icon' => 'welcome-widgets-menus' ],
-				'link'      => [ 'label' => __( 'Direct link', 'totalpoll' ), 'description' => __( 'Standard link', 'totalpoll' ), 'icon' => 'admin-links' ],
-				'embed'     => [ 'label' => __( 'Embed', 'totalpoll' ), 'description' => __( 'External inclusion', 'totalpoll' ), 'icon' => 'admin-site' ],
-				'email'     => [ 'label' => __( 'Email', 'totalpoll' ), 'description' => __( 'Vote links', 'totalpoll' ), 'icon' => 'email' ],
+				'shortcode' => [
+					'label'       => __( 'Shortcode', 'totalpoll' ),
+					'description' => __( 'WordPress feature', 'totalpoll' ),
+					'icon'        => 'editor-code'
+				],
+				'widget'    => [
+					'label'       => __( 'Widget', 'totalpoll' ),
+					'description' => __( 'WordPress feature', 'totalpoll' ),
+					'icon'        => 'welcome-widgets-menus'
+				],
+				'link'      => [
+					'label'       => __( 'Direct link', 'totalpoll' ),
+					'description' => __( 'Standard link', 'totalpoll' ),
+					'icon'        => 'admin-links'
+				],
+				'embed'     => [
+					'label'       => __( 'Embed', 'totalpoll' ),
+					'description' => __( 'External inclusion', 'totalpoll' ),
+					'icon'        => 'admin-site'
+				],
+				'email'     => [
+					'label'       => __( 'Email', 'totalpoll' ),
+					'description' => __( 'Vote links', 'totalpoll' ),
+					'icon'        => 'email'
+				],
 			]
 		);
 
@@ -331,12 +367,37 @@ class Editor {
 		$actions = [];
 
 		if ( current_user_can( 'edit_polls' ) ):
-			$actions['insights'] = [ 'label' => __( 'Insights', 'totalpoll' ), 'icon' => 'chart-area', 'url' => add_query_arg( [ 'post_type' => TP_POLL_CPT_NAME, 'page' => 'insights', 'poll' => $this->post->ID ], admin_url( 'edit.php' ) ) ];
-			$actions['entries']  = [ 'label' => __( 'Entries', 'totalpoll' ), 'icon' => 'list-view', 'url' => add_query_arg( [ 'post_type' => TP_POLL_CPT_NAME, 'page' => 'entries', 'poll' => $this->post->ID ], admin_url( 'edit.php' ) ) ];
+			$actions['insights'] = [
+				'label' => __( 'Insights', 'totalpoll' ),
+				'icon'  => 'chart-area',
+				'url'   => add_query_arg( [
+					'post_type' => TP_POLL_CPT_NAME,
+					'page'      => 'insights',
+					'poll'      => $this->post->ID
+				], admin_url( 'edit.php' ) )
+			];
+			$actions['entries']  = [
+				'label' => __( 'Entries', 'totalpoll' ),
+				'icon'  => 'list-view',
+				'url'   => add_query_arg( [
+					'post_type' => TP_POLL_CPT_NAME,
+					'page'      => 'entries',
+					'poll'      => $this->post->ID
+				], admin_url( 'edit.php' ) )
+			];
 		endif;
 
 		if ( current_user_can( 'manage_options' ) ):
-			$actions['log'] = [ 'label' => __( 'Log', 'totalpoll' ), 'icon' => 'archive', 'url' => add_query_arg( [ 'post_type' => TP_POLL_CPT_NAME, 'page' => 'log', 'poll' => $this->post->ID ], admin_url( 'edit.php' ) ) ];
+			$actions['log'] = [
+				'label' => __( 'Log', 'totalpoll' ),
+				'icon'  => 'archive',
+				'url'   => add_query_arg( [
+					'post_type' => TP_POLL_CPT_NAME,
+					'page'      => 'log',
+					'poll'      => $this->post->ID
+				],
+					admin_url( 'edit.php' ) )
+			];
 		endif;
 
 		/**
@@ -370,7 +431,7 @@ class Editor {
 			 *
 			 * @param array $settings Array of settings.
 			 * @param array $pollArgs Array of post args.
-			 * @param int   $pollId   Poll post ID.
+			 * @param int $pollId Poll post ID.
 			 *
 			 * @return array
 			 * @since 4.0.0
@@ -494,7 +555,7 @@ class Editor {
 			 *
 			 * @param array $settings Array of settings.
 			 * @param array $pollArgs Array of post args.
-			 * @param int   $pollId   Poll post ID.
+			 * @param int $pollId Poll post ID.
 			 *
 			 * @return array
 			 * @since 4.0.0
@@ -515,7 +576,7 @@ class Editor {
 			 *
 			 * @param array $pollArgs Array of post args.
 			 * @param array $settings Array of settings.
-			 * @param int   $pollId   Poll post ID.
+			 * @param int $pollId Poll post ID.
 			 *
 			 * @return array
 			 * @since 4.0.0

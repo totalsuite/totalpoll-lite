@@ -1289,7 +1289,7 @@ msgid "Insert"
 msgstr "Einfügen"
 
 #: Admin/Poll/views/choices/choices.php:170
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr ""
 "Noch keine Wahlmöglichkeiten. Fügen Sie einige hinzu, indem Sie auf die "
 "untenstehenden Schaltflächen klicken."
@@ -1888,7 +1888,7 @@ msgid "One field per line."
 msgstr "Ein Feld pro Zeile."
 
 #: Admin/Poll/views/form/fields.php:114
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr ""
 "Noch keine benutzerdefinierten Felder. Füge einige hinzu, indem du auf die "
 "untenstehenden Schaltflächen klickst."

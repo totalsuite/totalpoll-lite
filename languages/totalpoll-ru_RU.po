@@ -1788,7 +1788,7 @@ msgid "Insert"
 msgstr "Вставить"
 
 #: src/Admin/Poll/views/form/fields.php:45
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr "Пока нет настраиваемых полей. Добавьте их, нажав на кнопки ниже."
 
 #: src/Admin/Poll/views/form/fields.php:58
@@ -2362,7 +2362,7 @@ msgid "Audio"
 msgstr "Аудио"
 
 #: src/Admin/Poll/views/choices/choices.php:86
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr "Пока нет вариантов. Добавьте их, нажав на кнопки ниже."
 
 #: src/Admin/Poll/views/choices/choice-video.php:27

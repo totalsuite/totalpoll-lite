@@ -27,9 +27,9 @@ class Listing {
 	/**
 	 * Listing constructor.
 	 *
-	 * @param PollRepository  $pollRepository
+	 * @param PollRepository $pollRepository
 	 * @param EntryRepository $entryRepository
-	 * @param LogRepository   $logRepository
+	 * @param LogRepository $logRepository
 	 */
 	public function __construct( PollRepository $pollRepository, EntryRepository $entryRepository, LogRepository $logRepository ) {
 		$this->pollRepository  = $pollRepository;
@@ -96,11 +96,11 @@ class Listing {
 		/**
 		 * Filters the list of columns in polls listing.
 		 *
-		 * @param array $columns         Array of columns.
+		 * @param array $columns Array of columns.
 		 * @param array $originalColumns Array of original columns.
 		 *
-		 * @since 4.0.0
 		 * @return array
+		 * @since 4.0.0
 		 */
 		return apply_filters(
 			'totalpoll/filters/admin/listing/columns',
@@ -138,10 +138,10 @@ class Listing {
 		 * Filters the content of a column in polls listing.
 		 *
 		 * @param array $content Column content.
-		 * @param array $id      Poll post ID.
+		 * @param array $id Poll post ID.
 		 *
-		 * @since 4.0.0
 		 * @return string
+		 * @since 4.0.0
 		 */
 		echo apply_filters( "totalpoll/filters/admin/listing/columns-content/{$column}", null, $id );
 	}
@@ -159,27 +159,49 @@ class Listing {
 		$pollPostType = TP_POLL_CPT_NAME;
 
 		if ( current_user_can( 'edit_poll', $post->ID ) ):
-			$actions['entries']  = sprintf( '<a href="%s">%s</a>', esc_attr( admin_url( "edit.php?post_type={$pollPostType}&page=entries&poll={$post->ID}" ) ), esc_html( __( 'Entries', 'totalpoll' ) ) );
-			$actions['insights'] = sprintf( '<a href="%s">%s</a>', esc_attr( admin_url( "edit.php?post_type={$pollPostType}&page=insights&poll={$post->ID}" ) ), esc_html( __( 'Insights', 'totalpoll' ) ) );
+			$actions['entries']  = sprintf( '<a href="%s">%s</a>', esc_attr( wp_nonce_url( admin_url( "edit.php?post_type={$pollPostType}&page=entries&poll={$post->ID}" ) ) ), esc_html( __( 'Entries', 'totalpoll' ) ) );
+			$actions['insights'] = sprintf( '<a href="%s">%s</a>', esc_attr( wp_nonce_url( admin_url( "edit.php?post_type={$pollPostType}&page=insights&poll={$post->ID}" ) ) ), esc_html( __( 'Insights', 'totalpoll' ) ) );
 		endif;
 
 		if ( current_user_can( 'manage_options' ) ):
-			$actions['log'] = sprintf( '<a href="%s">%s</a>', esc_attr( admin_url( "edit.php?post_type={$pollPostType}&page=log&poll={$post->ID}" ) ), esc_html( __( 'Log', 'totalpoll' ) ) );
+			$actions['log'] = sprintf( '<a href="%s">%s</a>', esc_attr( wp_nonce_url( admin_url( "edit.php?post_type={$pollPostType}&page=log&poll={$post->ID}" ) ) ), esc_html( __( 'Log', 'totalpoll' ) ) );
 		endif;
 
-		if( current_user_can( 'manage_options' )) :
-			$url = admin_url( "admin-post.php?action=reset_poll&post_type={$pollPostType}&poll={$post->ID}");
-			$actions['reset'] = sprintf( '<a href="%s">%s</a>', esc_attr( add_query_arg('_wpnonce', wp_create_nonce('reset_poll'), $url) ), esc_html( __( 'Reset Poll', 'totalpoll' ) ) );
+		if ( current_user_can( 'manage_options' ) ) :
+			$url              = admin_url( "admin-post.php?action=reset_poll&post_type={$pollPostType}&poll={$post->ID}" );
+			$actions['reset'] = sprintf( '<a href="%s">%s</a>', esc_attr( add_query_arg( '_wpnonce', wp_create_nonce( 'reset_poll' ), $url ) ), esc_html( __( 'Reset Poll', 'totalpoll' ) ) );
+		endif;
+
+		if ( current_user_can( 'manage_options' ) ) :
+			$primaryItem = __( 'Export results', 'totalpoll' );
+
+			$items = [];
+
+			foreach ( [ 'csv', 'json', 'html' ] as $format ):
+				$items[] = [
+					'label' => sprintf( __( 'Export as %s', 'totalpoll' ), strtoupper( $format ) ),
+					'url'   => wp_nonce_url(
+						admin_url(
+							sprintf( 'admin-ajax.php?action=%s&poll=%d&format=%s', 'totalpoll_insights_download', $post->ID, $format )
+						)
+					)
+				];
+			endforeach;
+
+			ob_start();
+			include 'views/quick-action-menu.php';
+
+			$actions['export-results'] = ob_get_clean();
 		endif;
 
 		/**
 		 * Filters the list of available actions in polls listing (under each poll).
 		 *
-		 * @param array    $actions Array of actions [id => url].
-		 * @param \WP_Post $post    Poll post.
+		 * @param array $actions Array of actions [id => url].
+		 * @param \WP_Post $post Poll post.
 		 *
-		 * @since 4.0.0
 		 * @return array
+		 * @since 4.0.0
 		 */
 		return apply_filters( 'totalpoll/filters/admin/listing/actions', $actions, $post );
 	}
@@ -202,8 +224,8 @@ class Listing {
 		 *
 		 * @param array $states Array of states [id => label].
 		 *
-		 * @since 4.0.0
 		 * @return array
+		 * @since 4.0.0
 		 */
 		return apply_filters( 'totalpoll/filters/admin/listing/states', $states, $post );
 	}

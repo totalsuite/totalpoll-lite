@@ -27,6 +27,13 @@ abstract class Restriction extends RestrictionBase {
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function getPollUid() {
+		return $this->args['poll']->getUid();
+	}
+
+	/**
 	 * @param int $default
 	 *
 	 * @return int
@@ -82,6 +89,19 @@ abstract class Restriction extends RestrictionBase {
 	 * @return string
 	 */
 	public function getCookieName( $prefix ) {
-		return $this->generateCookieName( $prefix . $this->getAction() . $this->getPollId() );
+		$name = $this->generateCookieName( $prefix . $this->getAction() . $this->getPollId() . $this->getPollUid() );
+
+		/**
+		 * Filters poll cookie name.
+		 *
+		 * @param string $name Cookie name.
+		 * @param string $prefix Prefix.
+		 * @param string $args Args.
+		 * @param self $this Restriction object.
+		 *
+		 * @return string
+		 * @since 4.1.3
+		 */
+		return apply_filters( 'totalpoll/filters/poll/cookies/name', $name, $prefix, $this->args, $this );
 	}
 }

@@ -803,7 +803,8 @@ var TotalPoll;
     var EXTRACT_TYPE = TotalCore.Common.EXTRACT_TYPE;
     var extract = TotalCore.Common.extract;
     var RepositoryService = /** @class */ (function () {
-        function RepositoryService($resource, prefix, ajaxEndpoint, pollId, ColorsService) {
+        function RepositoryService($resource, $httpParamSerializerJQLike, prefix, ajaxEndpoint, pollId, ColorsService) {
+            this.$httpParamSerializerJQLike = $httpParamSerializerJQLike;
             this.prefix = prefix;
             this.ajaxEndpoint = ajaxEndpoint;
             this.pollId = pollId;
@@ -859,6 +860,19 @@ var TotalPoll;
         };
         RepositoryService.prototype.getPolls = function () {
             return this.resource.polls({ action: 'totalpoll_insights_polls' }).$promise;
+        };
+        RepositoryService.prototype.getDownload = function (format, filters) {
+            if (filters === void 0) { filters = {}; }
+            var iframe = document.createElement('iframe');
+            var query = this.$httpParamSerializerJQLike(angular.extend({}, {
+                action: this.prefix + "_insights_download",
+                poll: this.pollId,
+                format: format
+            }, filters));
+            iframe.src = this.ajaxEndpoint + "?" + query;
+            iframe.width = '0';
+            iframe.height = '0';
+            document.body.appendChild(iframe);
         };
         RepositoryService = __decorate([
             Service('services.totalpoll')
@@ -935,6 +949,12 @@ var TotalPoll;
         };
         InsightsBrowserComponent.prototype.updateUrl = function () {
             this.$location.search(angular.extend({}, this.$location.search(), this.filters));
+        };
+        InsightsBrowserComponent.prototype.canExport = function () {
+            return this.polls.length > 0;
+        };
+        InsightsBrowserComponent.prototype.exportAs = function (format) {
+            this.RepositoryService.getDownload(format, this.filters);
         };
         InsightsBrowserComponent = __decorate([
             Component('components.totalpoll', {

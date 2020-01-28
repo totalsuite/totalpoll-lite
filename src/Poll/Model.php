@@ -47,6 +47,14 @@ class Model implements Renderable, ModelContract {
 	protected $id = null;
 
 	/**
+	 * Poll UID.
+	 *
+	 * @var int|null
+	 * @since 4.1.3
+	 */
+	protected $uid = null;
+
+	/**
 	 * Poll attributes.
 	 *
 	 * @var array
@@ -213,8 +221,8 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll attributes.
 		 *
-		 * @param array                           $attributes Poll model attributes.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll       Poll model object.
+		 * @param array $attributes Poll model attributes.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return array
 		 * @since 4.0.0
@@ -230,14 +238,18 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll attributes.
 		 *
-		 * @param array                           $settings Poll settings.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll     Poll model object.
+		 * @param array $settings Poll settings.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return array
 		 * @since 4.0.0
 		 */
 		$this->settings = apply_filters( 'totalpoll/filters/poll/settings', $this->settings, $this );
 
+		// UID
+		$this->uid = $this->getSettingsItem( 'uid' );
+
+		// Locale
 		$locale = get_locale();
 
 		// Questions
@@ -321,13 +333,13 @@ class Model implements Renderable, ModelContract {
 
 		// Sort results
 		$this->sortResultsBy        = (string) $this->getSettingsItem( 'results.sort.field', 'position' );
-		$this->sortResultsDirection = (string) $this->getSettingsItem( 'results.sort.direction', 'desc' );
+		$this->sortResultsDirection = (string) $this->getSettingsItem( 'results.sort.direction', self::SORT_DESC );
 
 		/**
 		 * Filters the poll questions.
 		 *
 		 * @param array $questions Questions array.
-		 * @param Model $model     Poll model.
+		 * @param Model $model Poll model.
 		 *
 		 * @return array
 		 * @since 4.0.1
@@ -337,7 +349,7 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll total votes.
 		 *
-		 * @param int   $votes Total votes.
+		 * @param int $votes Total votes.
 		 * @param Model $model Poll model.
 		 *
 		 * @return array
@@ -386,6 +398,7 @@ class Model implements Renderable, ModelContract {
 		$this->restrictions = new \TotalPollVendors\TotalCore\Restrictions\Bag();
 
 		$frequencyArgs              = $this->getSettingsItem( 'vote.frequency', [ 'timeout' => 3600 ] );
+		$frequencyArgs['uid']       = $this->getUid();
 		$frequencyArgs['poll']      = $this;
 		$frequencyArgs['action']    = 'vote';
 		$frequencyArgs['fullCheck'] = TotalPoll()->option( 'performance.fullChecks.enabled' );
@@ -405,8 +418,8 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Fires after restrictions setup.
 		 *
-		 * @param \TotalPoll\Contracts\Poll\Model $poll          Poll model object.
-		 * @param array                           $frequencyArgs Frequency arguments.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
+		 * @param array $frequencyArgs Frequency arguments.
 		 *
 		 * @since 4.0.0
 		 */
@@ -505,7 +518,7 @@ class Model implements Renderable, ModelContract {
 	 * Get settings section or item.
 	 *
 	 * @param bool $section Settings section.
-	 * @param bool $args    Path to setting.
+	 * @param bool $args Path to setting.
 	 *
 	 * @return mixed|array|null
 	 * @since 1.0.0
@@ -530,7 +543,7 @@ class Model implements Renderable, ModelContract {
 	/**
 	 * Get settings item.
 	 *
-	 * @param bool $needle  Settings name.
+	 * @param bool $needle Settings name.
 	 * @param bool $default Default value.
 	 *
 	 * @return mixed|array|null
@@ -540,9 +553,9 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll settings item.
 		 *
-		 * @param array                           $settings Poll settings.
-		 * @param string                          $default  Default value.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll     Poll model object.
+		 * @param array $settings Poll settings.
+		 * @param string $default Default value.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return mixed
 		 * @since 4.0.0
@@ -567,6 +580,16 @@ class Model implements Renderable, ModelContract {
 	 */
 	public function getId() {
 		return (int) $this->id;
+	}
+
+	/**
+	 * Get poll uid.
+	 *
+	 * @return int
+	 * @since 4.1.3
+	 */
+	public function getUid() {
+		return (string) $this->uid;
 	}
 
 	/**
@@ -601,7 +624,7 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll seo attributes.
 		 *
-		 * @param array                           $seo  SEO attributes.
+		 * @param array $seo SEO attributes.
 		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return array
@@ -638,8 +661,8 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll sharing attributes.
 		 *
-		 * @param array                           $attributes Sharing attributes.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll       Poll model object.
+		 * @param array $attributes Sharing attributes.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return array
 		 * @since 4.0.0
@@ -661,8 +684,8 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll thumbnail.
 		 *
-		 * @param array                           $attributes Poll model attributes.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll       Poll model object.
+		 * @param array $attributes Poll model attributes.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return string
 		 * @since 4.0.0
@@ -737,8 +760,8 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll urls.
 		 *
-		 * @param string                          $url  URL.
-		 * @param array                           $args Arguments.
+		 * @param string $url URL.
+		 * @param array $args Arguments.
 		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return string
@@ -765,7 +788,11 @@ class Model implements Renderable, ModelContract {
 	 * @return string
 	 */
 	public function getAjaxUrl( $args = [] ) {
-		$args          = Arrays::parse( $args, [ 'pollId' => $this->id, 'action' => $this->getAction(), 'screen' => $this->getScreen() ] );
+		$args          = Arrays::parse( $args, [
+			'pollId' => $this->id,
+			'action' => $this->getAction(),
+			'screen' => $this->getScreen()
+		] );
 		$base          = admin_url( 'admin-ajax.php' );
 		$urlParameters = [ 'action' => 'totalpoll', 'totalpoll' => $args ];
 
@@ -774,8 +801,8 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll AJAX urls.
 		 *
-		 * @param string                          $url  URL.
-		 * @param array                           $args Arguments.
+		 * @param string $url URL.
+		 * @param array $args Arguments.
 		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return string
@@ -818,7 +845,7 @@ class Model implements Renderable, ModelContract {
 	}
 
 	/**
-	 * @param null   $orderBy
+	 * @param null $orderBy
 	 * @param string $direction
 	 *
 	 * @return array
@@ -828,7 +855,7 @@ class Model implements Renderable, ModelContract {
 			foreach ( $this->questions as &$question ):
 				uasort( $question['choices'], [ $this, 'orderBy' . ucfirst( $orderBy ) ] );
 
-				if ( $direction && $direction === self::SORT_DESC ):
+				if ( $direction && strtolower( $direction ) === self::SORT_DESC ):
 					$question['choices'] = array_reverse( $question['choices'], true );
 				endif;
 			endforeach;
@@ -845,7 +872,7 @@ class Model implements Renderable, ModelContract {
 		 * Filters the poll questions (for vote).
 		 *
 		 * @param array $questions Questions array.
-		 * @param Model $model     Poll model.
+		 * @param Model $model Poll model.
 		 *
 		 * @return array
 		 * @since 4.0.1
@@ -865,7 +892,7 @@ class Model implements Renderable, ModelContract {
 		 * Filters the poll questions (for results).
 		 *
 		 * @param array $questions Questions array.
-		 * @param Model $model     Poll model.
+		 * @param Model $model Poll model.
 		 *
 		 * @return array
 		 * @since 4.0.1
@@ -1123,8 +1150,8 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll custom fields.
 		 *
-		 * @param array                           $fields Poll custom fields.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll   Poll model object.
+		 * @param array $fields Poll custom fields.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return array
 		 * @since 4.0.0
@@ -1144,9 +1171,9 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters poll prefix.
 		 *
-		 * @param string                          $prefix Poll prefix.
-		 * @param string                          $append Appended value.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll   Poll model object.
+		 * @param string $prefix Poll prefix.
+		 * @param string $append Appended value.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return array
 		 * @since 4.0.3
@@ -1266,6 +1293,17 @@ class Model implements Renderable, ModelContract {
 	}
 
 	/**
+	 * @param string $format
+	 *
+	 * @return string|void
+	 */
+	public function getAdminExportAsLink( $format = 'csv' ) {
+		$url = sprintf( 'admin-ajax.php?action=%s&poll=%d&format=%s', 'totalpoll_insights_download', $this->getId(), strtolower( (string) $format ) );
+
+		return admin_url( $url );
+	}
+
+	/**
 	 * Set/Override settings item value.
 	 *
 	 * @param $needle
@@ -1366,13 +1404,13 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters whether current user has voted before.
 		 *
-		 * @param bool                            $hasVoted Whether current user has voted or not.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll     Poll model object.
+		 * @param bool $hasVoted Whether current user has voted or not.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return array
 		 * @since 4.0.0
 		 */
-		return apply_filters( 'totalpoll/filters/poll/has-voted', is_wp_error( $this->getRestrictions()->check() ) || $this->getRestrictions()->isApplied() || did_action( 'totalpoll/actions/after/poll/command/vote' ), $this );
+		return apply_filters( 'totalpoll / filters / poll / has - voted', is_wp_error( $this->getRestrictions()->check() ) || $this->getRestrictions()->isApplied() || did_action( 'totalpoll / actions / after / poll / command / vote' ), $this );
 	}
 
 	/**
@@ -1436,13 +1474,13 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters whether the poll is accepting new votes or not.
 		 *
-		 * @param bool                            $acceptVotes True when new votes are accepted otherwise false.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll        Poll model object.
+		 * @param bool $acceptVotes True when new votes are accepted otherwise false.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return bool
 		 * @since 4.0.0
 		 */
-		return apply_filters( 'totalpoll/filters/poll/accept-vote', ! is_wp_error( $this->error ), $this );
+		return apply_filters( 'totalpoll / filters / poll / accept - vote', ! is_wp_error( $this->error ), $this );
 	}
 
 	/**
@@ -1451,7 +1489,7 @@ class Model implements Renderable, ModelContract {
 	 * @return bool
 	 */
 	public function isResultsHidden() {
-		$visibility = $this->getSettingsItem( 'results.visibility' );
+		$visibility = $this->getSettingsItem( 'results . visibility' );
 
 		
 		$hidden = $visibility === 'voters' && !$this->hasVoted();
@@ -1462,13 +1500,13 @@ class Model implements Renderable, ModelContract {
 		/**
 		 * Filters the poll results visibility.
 		 *
-		 * @param bool                            $hidden True when hidden otherwise false.
-		 * @param \TotalPoll\Contracts\Poll\Model $poll   Poll model object.
+		 * @param bool $hidden True when hidden otherwise false.
+		 * @param \TotalPoll\Contracts\Poll\Model $poll Poll model object.
 		 *
 		 * @return bool
 		 * @since 4.0.0
 		 */
-		return apply_filters( 'totalpoll/filters/poll/results-hidden', $hidden, $this );
+		return apply_filters( 'totalpoll / filters / poll / results - hidden', $hidden, $this );
 	}
 
 	/**
@@ -1669,16 +1707,16 @@ class Model implements Renderable, ModelContract {
 	}
 
 	/**
-	 * @param array  $choice
+	 * @param array $choice
 	 * @param string $questionUid
-	 * @param bool   $persistent
+	 * @param bool $persistent
 	 *
 	 * @return array|bool
 	 */
 	public function addChoice( $choice, $questionUid, $persistent = true ) {
 		$question = $this->getQuestion( $questionUid );
 		$choice   = Arrays::parse( $choice, [
-			'uid'           => 'custom-' . Misc::generateUid(),
+			'uid'           => 'custom - ' . Misc::generateUid(),
 			'type'          => 'text',
 			'label'         => '',
 			'visibility'    => true,
@@ -1709,7 +1747,7 @@ class Model implements Renderable, ModelContract {
 	}
 
 	/**
-	 * @return bool
+	 * @inheritDoc
 	 */
 	public function save() {
 		return ! is_wp_error(
@@ -1718,6 +1756,15 @@ class Model implements Renderable, ModelContract {
 				'post_content' => wp_slash( json_encode( $this->settings ) ),
 			] )
 		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function refreshUid() {
+		$this->setSettingsItem( 'uid', Misc::generateUid() );
+
+		return $this->save();
 	}
 
 	/**
@@ -1758,8 +1805,8 @@ class Model implements Renderable, ModelContract {
 	 * Set question.
 	 *
 	 * @param string $questionUid
-	 * @param array  $override
-	 * @param bool   $persistent
+	 * @param array $override
+	 * @param bool $persistent
 	 *
 	 * @return bool
 	 */
@@ -1782,8 +1829,8 @@ class Model implements Renderable, ModelContract {
 	 * Set choice.
 	 *
 	 * @param string $choiceUid
-	 * @param array  $override
-	 * @param bool   $persistent
+	 * @param array $override
+	 * @param bool $persistent
 	 *
 	 * @return bool
 	 */
@@ -1808,7 +1855,7 @@ class Model implements Renderable, ModelContract {
 	 * Remove question.
 	 *
 	 * @param string $questionUid
-	 * @param bool   $persistent
+	 * @param bool $persistent
 	 *
 	 * @return bool
 	 */
@@ -1833,7 +1880,7 @@ class Model implements Renderable, ModelContract {
 	 * Remove choice.
 	 *
 	 * @param string $choiceUid
-	 * @param bool   $persistent
+	 * @param bool $persistent
 	 *
 	 * @return bool
 	 */

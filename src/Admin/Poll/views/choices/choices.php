@@ -169,7 +169,7 @@
 
     <div class="totalpoll-empty-state" ng-if="$ctrl.items.length === 0" ondragstart="return false;">
         <div class="totalpoll-empty-state-text">
-			<?php _e( 'No choices yet. Add some by clicking on buttons bellow.', 'totalpoll' ); ?>
+			<?php _e( 'No choices yet. Add some by clicking on buttons below.', 'totalpoll' ); ?>
         </div>
     </div>
     <div class="totalpoll-containable-list"

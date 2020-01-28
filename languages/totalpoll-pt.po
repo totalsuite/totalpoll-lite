@@ -1277,7 +1277,7 @@ msgid "Insert"
 msgstr "Inserir"
 
 #: src/Admin/Poll/views/form/fields.php:45
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr ""
 "Nenhum campo personalizado ainda. Adicione alguns clicando nos botões abaixo."
 
@@ -1816,7 +1816,7 @@ msgid "Audio"
 msgstr "Áudio"
 
 #: src/Admin/Poll/views/choices/choices.php:86
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr ""
 "Nenhuma alternativa ainda. Adicione algumas clicando nos botões abaixo."
 

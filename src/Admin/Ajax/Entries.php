@@ -36,7 +36,7 @@ class Entries {
 	/**
 	 * Entries constructor.
 	 *
-	 * @param Request    $request
+	 * @param Request $request
 	 * @param Repository $entry
 	 */
 	public function __construct( Request $request, Repository $entry ) {
@@ -77,8 +77,8 @@ class Entries {
 		/**
 		 * Filters the list of entries sent to entries browser.
 		 *
-		 * @param Model[] $entries  Array of entries models.
-		 * @param array   $criteria Array of criteria.
+		 * @param Model[] $entries Array of entries models.
+		 * @param array $criteria Array of criteria.
 		 *
 		 * @return array
 		 * @since 4.0.0
@@ -134,6 +134,7 @@ class Entries {
 			$export->addColumn( new TextColumn( $field['label'] ?: $field['name'] ) );
 		endforeach;
 
+		$export->addColumn( new TextColumn( 'Choices' ) );
 		$export->addColumn( new DateColumn( 'Date' ) );
 		$export->addColumn( new TextColumn( 'Log ID' ) );
 		$export->addColumn( new TextColumn( 'User ID' ) );
@@ -145,9 +146,9 @@ class Entries {
 		/**
 		 * Fires after setup essential columns and before populating data. Useful for define new columns.
 		 *
-		 * @param Spreadsheet $export  Spreadsheet object.
-		 * @param array       $fields  Array of poll's form fields.
-		 * @param array       $entries Array of entries.
+		 * @param Spreadsheet $export Spreadsheet object.
+		 * @param array $fields Array of poll's form fields.
+		 * @param array $entries Array of entries.
 		 *
 		 * @since 4.0.0
 		 */
@@ -159,6 +160,8 @@ class Entries {
 				$row[] = $entry->getField( $field['name'], 'N/A' );
 			endforeach;
 
+			$log   = $entry->getLog();
+			$row[] = wp_strip_all_tags( empty( $log['details']['choices'] ) ? 'N/A' : implode( ', ', (array) $log['details']['choices'] ) );
 			$row[] = $entry->getDate();
 			$row[] = $entry->getLogId();
 			$row[] = $entry->getUserId() ?: 'N/A';
@@ -169,7 +172,7 @@ class Entries {
 			/**
 			 * Filters a row of exported entries.
 			 *
-			 * @param array $row   Array of values.
+			 * @param array $row Array of values.
 			 * @param Model $entry Entry model.
 			 *
 			 * @return array
@@ -234,13 +237,17 @@ class Entries {
 				}, $poll->getFields() );
 
 
-				$columns = [ 'id' => $poll->getId(), 'title' => $poll->getTitle(), 'fields' => array_values( $fields ) ];
+				$columns = [
+					'id'     => $poll->getId(),
+					'title'  => $poll->getTitle(),
+					'fields' => array_values( $fields )
+				];
 
 				/**
 				 * Filters the poll object sent to entries.
 				 *
 				 * @param array $pollRepresentation The representation of a poll.
-				 * @param Model $poll               Poll model object.
+				 * @param Model $poll Poll model object.
 				 *
 				 * @return array
 				 * @since 4.0.0

@@ -198,7 +198,8 @@ div#totalpoll.totalpoll-wrapper[totalpoll-uid="{{uid||'none'}}"] .totalpoll-cont
   border-width: {{custom.container.border.width||layout.width||'unset'}};
   border-style: {{custom.container.border.style||layout.style||'unset'}};
   border-radius: {{custom.container.border.radius||layout.radius||'unset'}};
-  color: {{custom.container.colors.color||colors.dark||'unset'}}; }
+  color: {{custom.container.colors.color||colors.dark||'unset'}};
+  box-shadow: {{custom.button.shadows.box||'unset'}}; }
 
 div#totalpoll.totalpoll-wrapper[totalpoll-uid="{{uid||'none'}}"] .totalpoll-row {
   display: flex;
@@ -371,6 +372,7 @@ div#totalpoll.totalpoll-wrapper[totalpoll-uid="{{uid||'none'}}"] .totalpoll-butt
   border-style: {{custom.button.border.style||layout.style||'unset'}};
   border-radius: {{custom.button.border.radius||layout.radius||'unset'}};
   box-shadow: {{custom.button.shadows.box||'unset'}};
+  text-shadow: {{custom.button.shadows.text||'unset'}};
   transition-duration: 200ms;
   transition-property: all;
   transition-timing-function: ease-out;

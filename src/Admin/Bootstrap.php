@@ -55,37 +55,37 @@ class Bootstrap {
 		$this->env = $env;
 		// TotalPoll Pages
 		$this->pages = [
-			'dashboard'  => [
+			'dashboard'      => [
 				'title'      => __( 'Dashboard', 'totalpoll' ),
 				'name'       => __( 'Dashboard', 'totalpoll' ),
 				'capability' => 'manage_options',
 			],
-			'entries'    => [
+			'entries'        => [
 				'title'      => __( 'Entries', 'totalpoll' ),
 				'name'       => __( 'Entries', 'totalpoll' ),
 				'capability' => 'edit_polls',
 			],
-			'insights'   => [
+			'insights'       => [
 				'title'      => __( 'Insights', 'totalpoll' ),
 				'name'       => __( 'Insights', 'totalpoll' ),
 				'capability' => 'edit_polls',
 			],
-			'log'        => [
+			'log'            => [
 				'title'      => __( 'Log', 'totalpoll' ),
 				'name'       => __( 'Logs', 'totalpoll' ),
 				'capability' => 'manage_options',
 			],
-			'templates'  => [
+			'templates'      => [
 				'title'      => __( 'Templates', 'totalpoll' ),
 				'name'       => __( 'Templates', 'totalpoll' ),
 				'capability' => 'manage_options',
 			],
-			'extensions' => [
+			'extensions'     => [
 				'title'      => __( 'Extensions', 'totalpoll' ),
 				'name'       => __( 'Extensions', 'totalpoll' ),
 				'capability' => 'manage_options',
 			],
-			'options'    => [
+			'options'        => [
 				'title'      => __( 'Options', 'totalpoll' ),
 				'name'       => __( 'Options', 'totalpoll' ),
 				'capability' => 'manage_options',
@@ -469,6 +469,7 @@ class Bootstrap {
 			TotalPoll( 'log.repository' )->delete( [ 'poll_id' => $postId ] );
 			TotalPoll( 'entries.repository' )->delete( [ 'poll_id' => $postId ] );
 			TotalPoll( 'polls.repository' )->deleteVotes( [ 'poll_id' => $postId ] );
+			TotalPoll( 'polls.repository' )->getById( $postId )->refreshUid();
 		endif;
 	}
 

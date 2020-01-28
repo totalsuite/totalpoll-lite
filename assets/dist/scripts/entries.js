@@ -946,6 +946,8 @@ var TotalPoll;
             var iframe = document.createElement('iframe');
             var query = this.$httpParamSerializerJQLike(angular.extend({}, { action: this.prefix + "_entries_download", poll: this.pollId, format: format }, filters));
             iframe.src = this.ajaxEndpoint + "?" + query;
+            iframe.width = '0';
+            iframe.height = '0';
             document.body.appendChild(iframe);
         };
         RepositoryService.prototype.getPage = function (page, filters) {

@@ -834,6 +834,7 @@ var TotalPoll;
             $scope.options = _this.options;
             if (!_this.options.expressions || angular.isArray(_this.options.expressions)) {
                 _this.options.expressions = {};
+                _this.expressions.user = {};
             }
             //this.attachListenerToModels();
             _this.prepareDragAndDrop();

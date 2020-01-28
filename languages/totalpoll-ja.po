@@ -1310,7 +1310,7 @@ msgid "Insert"
 msgstr "挿入"
 
 #: Admin/Poll/views/choices/choices.php:170
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr ""
 "まだ選択肢はありません。 以下のボタンをクリックしていくつか追加してください。"
 
@@ -1935,7 +1935,7 @@ msgid "One field per line."
 msgstr "一行に一つのフィールド"
 
 #: Admin/Poll/views/form/fields.php:114
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr ""
 "カスタム欄はまだありません。 以下のボタンをクリックして追加してください。"
 

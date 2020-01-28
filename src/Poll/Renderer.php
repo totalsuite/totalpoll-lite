@@ -290,12 +290,13 @@ class Renderer {
 	 */
 	protected function getCss() {
 		$presetUid     = $this->poll->getPresetUid();
-		$cachedCssFile = 'css/' . $presetUid . '.css';
-		wp_enqueue_style( 'totalpoll-poll-' . $presetUid, $this->env['cache']['url'] . $cachedCssFile, [], Misc::isDevelopmentMode() ? time() : false );
+		$cachedCssFile = "css/{$presetUid}.css";
 
-		ob_start();
-		wp_print_styles( 'totalpoll-poll-' . $presetUid );
-		$css = ob_get_clean();
+		$css = sprintf(
+			'<link rel="stylesheet" id="totalpoll-poll-%s-css"  href="%s" type="text/css" media="all" />',
+			$presetUid,
+			$this->env['cache']['url'] . $cachedCssFile
+		);
 
 		$inlineCss = TotalPoll()->option( 'advanced.inlineCss' );
 		if ( $inlineCss || Misc::isDevelopmentMode() || ! $this->filesystem->is_readable( $this->env['cache']['path'] . $cachedCssFile ) ):

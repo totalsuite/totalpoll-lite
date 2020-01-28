@@ -29,6 +29,7 @@ class Plugin extends \TotalPollVendors\TotalCore\Foundation\Plugin {
 		// Poll post defaults
 		$this->container->add( 'polls.defaults', function () {
 			return [
+				'uid'           => Misc::generateUid(),
 				'id'            => get_the_ID(),
 				'questions'     => [],
 				'fields'        => [],

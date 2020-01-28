@@ -72,8 +72,11 @@
     margin-bottom: 1.5em;
     border: 2px dashed #bbbbbb;
     text-align: center; }
+    #totalpoll-modules .totalpoll-modules-installer:hover, #totalpoll-modules .totalpoll-modules-installer.uploading {
+      border-color: #0073aa; }
     #totalpoll-modules .totalpoll-modules-installer.uploading {
-      border-color: #bbbbbb; }
+      background: white;
+      border-style: solid; }
     #totalpoll-modules .totalpoll-modules-installer .dashicons {
       display: block;
       text-align: center;
@@ -91,7 +94,7 @@
       height: 100%;
       opacity: 0;
       cursor: pointer; }
-    #totalpoll-modules .totalpoll-modules-installer button {
+    #totalpoll-modules .totalpoll-modules-installer .button-primary {
       position: relative;
       z-index: 1; }
   #totalpoll-modules .totalpoll-modules-customization {

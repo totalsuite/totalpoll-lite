@@ -15,7 +15,7 @@
 
         <p><?php _e( 'If you have a template or extension in .zip format, you may install it by uploading it here.', 'totalpoll' ); ?></p>
 
-        <button type="button" class="button button-large" ng-if="!$ctrl.file" onclick="uploadModuleFile.click()"><?php _e( 'Browse', 'totalpoll' ); ?></button>
+        <button type="button" class="button button-large" ng-if="!$ctrl.file"><?php _e( 'Browse', 'totalpoll' ); ?></button>
         <input type="file" ng-model="$ctrl.file" accept="application/zip" ng-disabled="$ctrl.isProcessing()" id="uploadModuleFile">
         <button class="button button-large button-primary" ng-if="$ctrl.file" ng-click="$ctrl.install()"
                 ng-disabled="$ctrl.isProcessing()"><?php _e( 'Install', 'totalpoll' ); ?> {{$ctrl.file.name}}

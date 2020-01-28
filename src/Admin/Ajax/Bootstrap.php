@@ -42,6 +42,7 @@ class Bootstrap {
 			add_action( 'wp_ajax_totalpoll_entries_download', function () {
 				TotalPoll( 'admin.ajax.entries' )->download();
 			} );
+
 			/**
 			 * @action wp_ajax_totalpoll_entries_polls
 			 * @since  4.0.0
@@ -67,6 +68,14 @@ class Bootstrap {
 			add_action( 'wp_ajax_totalpoll_insights_polls', function () {
 				TotalPoll( 'admin.ajax.insights' )->polls();
 			} );
+
+            /**
+             * @action wp_ajax_totalpoll_insights_download
+             * @since  4.0.0
+             */
+            add_action( 'wp_ajax_totalpoll_insights_download', function () {
+                TotalPoll( 'admin.ajax.insights' )->download();
+            } );
 		endif;
 		if ( current_user_can( 'manage_options' ) ):
 			// ------------------------------

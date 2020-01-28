@@ -1722,7 +1722,7 @@ msgid "Insert"
 msgstr "插入"
 
 #: src/Admin/Poll/views/form/fields.php:45
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr "还没有自定义字段.通过按以下按钮来添加."
 
 #: src/Admin/Poll/views/form/fields.php:58
@@ -2283,7 +2283,7 @@ msgid "Audio"
 msgstr "音频"
 
 #: src/Admin/Poll/views/choices/choices.php:86
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr "还没有选项. 通过点击以下按钮添加."
 
 #: src/Admin/Poll/views/choices/choice-video.php:27

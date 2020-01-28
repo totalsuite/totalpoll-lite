@@ -1122,3 +1122,10 @@
       display: flex; }
       #totalpoll-poll-editor .totalpoll-migration-nag.active + .totalpoll-poll-wrapper {
         display: none; }
+  #totalpoll-poll-editor .totalpoll-settings-timeout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+  #totalpoll-poll-editor .totalpoll-settings-timeout-value {
+    width: 20%;
+    margin: 0.5rem 0; }

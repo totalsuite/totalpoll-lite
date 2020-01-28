@@ -14,11 +14,23 @@ class ComposerStaticInitTotalPoll
         'T' => 
         array (
             'TotalPoll\\' => 10,
-            'TotalPollVendors\\Symfony\\Polyfill\\Mbstring\\' => 43,
-            'TotalPollVendors\\Psr\\Container\\' => 31,
-            'TotalPollVendors\\League\\Container\\' => 34,
-            'TotalPollVendors\\Interop\\Container\\' => 35,
             'TotalPollVendors\\TotalCore\\' => 10,
+        ),
+        'S' => 
+        array (
+            'TotalPollVendors\\Symfony\\Polyfill\\Mbstring\\' => 26,
+        ),
+        'P' => 
+        array (
+            'TotalPollVendors\\Psr\\Container\\' => 14,
+        ),
+        'L' => 
+        array (
+            'TotalPollVendors\\League\\Container\\' => 17,
+        ),
+        'I' => 
+        array (
+            'TotalPollVendors\\Interop\\Container\\' => 18,
         ),
     );
 
@@ -26,6 +38,10 @@ class ComposerStaticInitTotalPoll
         'TotalPoll\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'TotalPollVendors\\TotalCore\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src',
         ),
         'TotalPollVendors\\Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -43,13 +59,46 @@ class ComposerStaticInitTotalPoll
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
         ),
-        'TotalPollVendors\\TotalCore\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src',
-        ),
     );
 
     public static $classMap = array (
+        'TotalPollVendors\\Interop\\Container\\ContainerInterface' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/ContainerInterface.php',
+        'TotalPollVendors\\Interop\\Container\\Exception\\ContainerException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/ContainerException.php',
+        'TotalPollVendors\\Interop\\Container\\Exception\\NotFoundException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/NotFoundException.php',
+        'TotalPollVendors\\League\\Container\\Argument\\ArgumentResolverInterface' => __DIR__ . '/..' . '/league/container/src/Argument/ArgumentResolverInterface.php',
+        'TotalPollVendors\\League\\Container\\Argument\\ArgumentResolverTrait' => __DIR__ . '/..' . '/league/container/src/Argument/ArgumentResolverTrait.php',
+        'TotalPollVendors\\League\\Container\\Argument\\RawArgument' => __DIR__ . '/..' . '/league/container/src/Argument/RawArgument.php',
+        'TotalPollVendors\\League\\Container\\Argument\\RawArgumentInterface' => __DIR__ . '/..' . '/league/container/src/Argument/RawArgumentInterface.php',
+        'TotalPollVendors\\League\\Container\\Container' => __DIR__ . '/..' . '/league/container/src/Container.php',
+        'TotalPollVendors\\League\\Container\\ContainerAwareInterface' => __DIR__ . '/..' . '/league/container/src/ContainerAwareInterface.php',
+        'TotalPollVendors\\League\\Container\\ContainerAwareTrait' => __DIR__ . '/..' . '/league/container/src/ContainerAwareTrait.php',
+        'TotalPollVendors\\League\\Container\\ContainerInterface' => __DIR__ . '/..' . '/league/container/src/ContainerInterface.php',
+        'TotalPollVendors\\League\\Container\\Definition\\AbstractDefinition' => __DIR__ . '/..' . '/league/container/src/Definition/AbstractDefinition.php',
+        'TotalPollVendors\\League\\Container\\Definition\\CallableDefinition' => __DIR__ . '/..' . '/league/container/src/Definition/CallableDefinition.php',
+        'TotalPollVendors\\League\\Container\\Definition\\ClassDefinition' => __DIR__ . '/..' . '/league/container/src/Definition/ClassDefinition.php',
+        'TotalPollVendors\\League\\Container\\Definition\\ClassDefinitionInterface' => __DIR__ . '/..' . '/league/container/src/Definition/ClassDefinitionInterface.php',
+        'TotalPollVendors\\League\\Container\\Definition\\DefinitionFactory' => __DIR__ . '/..' . '/league/container/src/Definition/DefinitionFactory.php',
+        'TotalPollVendors\\League\\Container\\Definition\\DefinitionFactoryInterface' => __DIR__ . '/..' . '/league/container/src/Definition/DefinitionFactoryInterface.php',
+        'TotalPollVendors\\League\\Container\\Definition\\DefinitionInterface' => __DIR__ . '/..' . '/league/container/src/Definition/DefinitionInterface.php',
+        'TotalPollVendors\\League\\Container\\Exception\\NotFoundException' => __DIR__ . '/..' . '/league/container/src/Exception/NotFoundException.php',
+        'TotalPollVendors\\League\\Container\\ImmutableContainerAwareInterface' => __DIR__ . '/..' . '/league/container/src/ImmutableContainerAwareInterface.php',
+        'TotalPollVendors\\League\\Container\\ImmutableContainerAwareTrait' => __DIR__ . '/..' . '/league/container/src/ImmutableContainerAwareTrait.php',
+        'TotalPollVendors\\League\\Container\\ImmutableContainerInterface' => __DIR__ . '/..' . '/league/container/src/ImmutableContainerInterface.php',
+        'TotalPollVendors\\League\\Container\\Inflector\\Inflector' => __DIR__ . '/..' . '/league/container/src/Inflector/Inflector.php',
+        'TotalPollVendors\\League\\Container\\Inflector\\InflectorAggregate' => __DIR__ . '/..' . '/league/container/src/Inflector/InflectorAggregate.php',
+        'TotalPollVendors\\League\\Container\\Inflector\\InflectorAggregateInterface' => __DIR__ . '/..' . '/league/container/src/Inflector/InflectorAggregateInterface.php',
+        'TotalPollVendors\\League\\Container\\ReflectionContainer' => __DIR__ . '/..' . '/league/container/src/ReflectionContainer.php',
+        'TotalPollVendors\\League\\Container\\ServiceProvider\\AbstractServiceProvider' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/AbstractServiceProvider.php',
+        'TotalPollVendors\\League\\Container\\ServiceProvider\\AbstractSignatureServiceProvider' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/AbstractSignatureServiceProvider.php',
+        'TotalPollVendors\\League\\Container\\ServiceProvider\\BootableServiceProviderInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/BootableServiceProviderInterface.php',
+        'TotalPollVendors\\League\\Container\\ServiceProvider\\ServiceProviderAggregate' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderAggregate.php',
+        'TotalPollVendors\\League\\Container\\ServiceProvider\\ServiceProviderAggregateInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderAggregateInterface.php',
+        'TotalPollVendors\\League\\Container\\ServiceProvider\\ServiceProviderInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderInterface.php',
+        'TotalPollVendors\\League\\Container\\ServiceProvider\\SignatureServiceProviderInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/SignatureServiceProviderInterface.php',
+        'TotalPollVendors\\Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
+        'TotalPollVendors\\Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
+        'TotalPollVendors\\Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
+        'TotalPollVendors\\Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'TotalPollVendors\\TotalCore\\Admin\\Account' => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src/Admin/Account.php',
         'TotalPollVendors\\TotalCore\\Admin\\Activation' => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src/Admin/Activation.php',
         'TotalPollVendors\\TotalCore\\Admin\\Pages\\Page' => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src/Admin/Pages/Page.php',
@@ -143,43 +192,6 @@ class ComposerStaticInitTotalPoll
         'TotalPollVendors\\TotalCore\\Traits\\Cookies' => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src/Traits/Cookies.php',
         'TotalPollVendors\\TotalCore\\Traits\\Metadata' => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src/Traits/Metadata.php',
         'TotalPollVendors\\TotalCore\\Widgets\\Widget' => __DIR__ . '/..' . '/misqtech/totalsuite-totalcore/src/Widgets/Widget.php',
-        'TotalPollVendors\\Interop\\Container\\ContainerInterface' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/ContainerInterface.php',
-        'TotalPollVendors\\Interop\\Container\\Exception\\ContainerException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/ContainerException.php',
-        'TotalPollVendors\\Interop\\Container\\Exception\\NotFoundException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/NotFoundException.php',
-        'TotalPollVendors\\League\\Container\\Argument\\ArgumentResolverInterface' => __DIR__ . '/..' . '/league/container/src/Argument/ArgumentResolverInterface.php',
-        'TotalPollVendors\\League\\Container\\Argument\\ArgumentResolverTrait' => __DIR__ . '/..' . '/league/container/src/Argument/ArgumentResolverTrait.php',
-        'TotalPollVendors\\League\\Container\\Argument\\RawArgument' => __DIR__ . '/..' . '/league/container/src/Argument/RawArgument.php',
-        'TotalPollVendors\\League\\Container\\Argument\\RawArgumentInterface' => __DIR__ . '/..' . '/league/container/src/Argument/RawArgumentInterface.php',
-        'TotalPollVendors\\League\\Container\\Container' => __DIR__ . '/..' . '/league/container/src/Container.php',
-        'TotalPollVendors\\League\\Container\\ContainerAwareInterface' => __DIR__ . '/..' . '/league/container/src/ContainerAwareInterface.php',
-        'TotalPollVendors\\League\\Container\\ContainerAwareTrait' => __DIR__ . '/..' . '/league/container/src/ContainerAwareTrait.php',
-        'TotalPollVendors\\League\\Container\\ContainerInterface' => __DIR__ . '/..' . '/league/container/src/ContainerInterface.php',
-        'TotalPollVendors\\League\\Container\\Definition\\AbstractDefinition' => __DIR__ . '/..' . '/league/container/src/Definition/AbstractDefinition.php',
-        'TotalPollVendors\\League\\Container\\Definition\\CallableDefinition' => __DIR__ . '/..' . '/league/container/src/Definition/CallableDefinition.php',
-        'TotalPollVendors\\League\\Container\\Definition\\ClassDefinition' => __DIR__ . '/..' . '/league/container/src/Definition/ClassDefinition.php',
-        'TotalPollVendors\\League\\Container\\Definition\\ClassDefinitionInterface' => __DIR__ . '/..' . '/league/container/src/Definition/ClassDefinitionInterface.php',
-        'TotalPollVendors\\League\\Container\\Definition\\DefinitionFactory' => __DIR__ . '/..' . '/league/container/src/Definition/DefinitionFactory.php',
-        'TotalPollVendors\\League\\Container\\Definition\\DefinitionFactoryInterface' => __DIR__ . '/..' . '/league/container/src/Definition/DefinitionFactoryInterface.php',
-        'TotalPollVendors\\League\\Container\\Definition\\DefinitionInterface' => __DIR__ . '/..' . '/league/container/src/Definition/DefinitionInterface.php',
-        'TotalPollVendors\\League\\Container\\Exception\\NotFoundException' => __DIR__ . '/..' . '/league/container/src/Exception/NotFoundException.php',
-        'TotalPollVendors\\League\\Container\\ImmutableContainerAwareInterface' => __DIR__ . '/..' . '/league/container/src/ImmutableContainerAwareInterface.php',
-        'TotalPollVendors\\League\\Container\\ImmutableContainerAwareTrait' => __DIR__ . '/..' . '/league/container/src/ImmutableContainerAwareTrait.php',
-        'TotalPollVendors\\League\\Container\\ImmutableContainerInterface' => __DIR__ . '/..' . '/league/container/src/ImmutableContainerInterface.php',
-        'TotalPollVendors\\League\\Container\\Inflector\\Inflector' => __DIR__ . '/..' . '/league/container/src/Inflector/Inflector.php',
-        'TotalPollVendors\\League\\Container\\Inflector\\InflectorAggregate' => __DIR__ . '/..' . '/league/container/src/Inflector/InflectorAggregate.php',
-        'TotalPollVendors\\League\\Container\\Inflector\\InflectorAggregateInterface' => __DIR__ . '/..' . '/league/container/src/Inflector/InflectorAggregateInterface.php',
-        'TotalPollVendors\\League\\Container\\ReflectionContainer' => __DIR__ . '/..' . '/league/container/src/ReflectionContainer.php',
-        'TotalPollVendors\\League\\Container\\ServiceProvider\\AbstractServiceProvider' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/AbstractServiceProvider.php',
-        'TotalPollVendors\\League\\Container\\ServiceProvider\\AbstractSignatureServiceProvider' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/AbstractSignatureServiceProvider.php',
-        'TotalPollVendors\\League\\Container\\ServiceProvider\\BootableServiceProviderInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/BootableServiceProviderInterface.php',
-        'TotalPollVendors\\League\\Container\\ServiceProvider\\ServiceProviderAggregate' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderAggregate.php',
-        'TotalPollVendors\\League\\Container\\ServiceProvider\\ServiceProviderAggregateInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderAggregateInterface.php',
-        'TotalPollVendors\\League\\Container\\ServiceProvider\\ServiceProviderInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderInterface.php',
-        'TotalPollVendors\\League\\Container\\ServiceProvider\\SignatureServiceProviderInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/SignatureServiceProviderInterface.php',
-        'TotalPollVendors\\Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
-        'TotalPollVendors\\Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
-        'TotalPollVendors\\Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
-        'TotalPollVendors\\Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'TotalPoll\\Admin\\Ajax\\Bootstrap' => __DIR__ . '/../..' . '/src/Admin/Ajax/Bootstrap.php',
         'TotalPoll\\Admin\\Ajax\\Dashboard' => __DIR__ . '/../..' . '/src/Admin/Ajax/Dashboard.php',
         'TotalPoll\\Admin\\Ajax\\Entries' => __DIR__ . '/../..' . '/src/Admin/Ajax/Entries.php',

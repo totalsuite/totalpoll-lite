@@ -16,7 +16,7 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 * Get settings section or item.
 	 *
 	 * @param bool $section Settings section.
-	 * @param bool $args    Path to setting.
+	 * @param bool $args Path to setting.
 	 *
 	 * @return mixed|array|null
 	 * @since 1.0.0
@@ -26,7 +26,7 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	/**
 	 * Get settings item.
 	 *
-	 * @param bool $needle  Settings name.
+	 * @param bool $needle Settings name.
 	 * @param bool $default Default value.
 	 *
 	 * @return mixed|array|null
@@ -48,6 +48,14 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 * @since 1.0.0
 	 */
 	public function getId();
+
+	/**
+	 * Get poll uid.
+	 *
+	 * @return int
+	 * @since 4.1.3
+	 */
+	public function getUid();
 
 	/**
 	 * Get poll title.
@@ -538,9 +546,9 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	/**
 	 * Add choice to a question.
 	 *
-	 * @param array  $choice
+	 * @param array $choice
 	 * @param string $questionUid
-	 * @param bool   $persistent
+	 * @param bool $persistent
 	 *
 	 * @return array
 	 */
@@ -550,7 +558,7 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 * Set question.
 	 *
 	 * @param string $questionUid
-	 * @param array  $override
+	 * @param array $override
 	 *
 	 * @return bool
 	 */
@@ -560,8 +568,8 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 * Set choice.
 	 *
 	 * @param string $choiceUid
-	 * @param array  $override
-	 * @param bool   $persistent
+	 * @param array $override
+	 * @param bool $persistent
 	 *
 	 * @return bool
 	 */
@@ -571,7 +579,7 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 * Remove question.
 	 *
 	 * @param string $questionUid
-	 * @param bool   $persistent
+	 * @param bool $persistent
 	 *
 	 * @return bool
 	 */
@@ -581,7 +589,7 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 * Remove choice.
 	 *
 	 * @param string $choiceUid
-	 * @param bool   $persistent
+	 * @param bool $persistent
 	 *
 	 * @return bool
 	 */
@@ -601,6 +609,13 @@ interface Model extends \ArrayAccess, JsonSerializable, Arrayable {
 	 * @return bool
 	 */
 	public function save();
+
+	/**
+	 * Refresh poll UID.
+	 *
+	 * @return bool
+	 */
+	public function refreshUid();
 
 	/**
 	 * Get poll current action.

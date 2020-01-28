@@ -1495,6 +1495,7 @@ var TotalPoll;
             this.languages = this.SettingsService.languages;
             this.modules = this.SettingsService.modules;
             this.settings = this.SettingsService.settings;
+            this.presets = this.SettingsService.presets;
             var urlParams = this.$location.search();
             $rootScope.settings = this.settings;
             $rootScope.information = this.information;
@@ -1506,6 +1507,12 @@ var TotalPoll;
                 }
             });
         }
+        EditorCtrl.prototype.setTimeout = function (timeout) {
+            this.$rootScope.settings.vote.frequency.timeout = parseInt(timeout, 10);
+        };
+        EditorCtrl.prototype.isCustomTimeout = function () {
+            return !(this.$rootScope.settings.vote.frequency.timeout in this.presets.timeout);
+        };
         EditorCtrl = __decorate([
             Controller('controllers.totalpoll')
         ], EditorCtrl);
@@ -1713,6 +1720,8 @@ var TotalPoll;
                         return;
                     if (field.translations == undefined) {
                         field.translations = {};
+                    }
+                    if (field.translations[_this.language.code] == undefined) {
                         field.translations[_this.language.code] = { options: {} };
                     }
                     var translated = {};
@@ -1725,9 +1734,9 @@ var TotalPoll;
             }
         };
         TranslationsCtrl.prototype.parseOptions = function (options) {
-            return options.split(/\n/g).map(function (option) {
-                return option.split(':', 2).map(function (item) { return item.trim(); });
-            });
+            return options
+                .split(/\n/g).map(function (option) { return option.split(':', 2).map(function (item) { return item.trim(); }); })
+                .filter(function (item) { return item.toString().trim().length > 0; });
         };
         TranslationsCtrl = __decorate([
             Controller('controllers.totalpoll')

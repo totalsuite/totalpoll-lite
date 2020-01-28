@@ -624,7 +624,7 @@ msgid "Audio"
 msgstr "صوت"
 
 #: src/Admin/Poll/Editor.php:311
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr "لا يوجد اختيارات بعد. قم بإضافة بعضها باستخدام الأزرار بالأسفل."
 
 #: src/Admin/Poll/Editor.php:313 src/Admin/Poll/Listing.php:64
@@ -1886,7 +1886,7 @@ msgid "Insert"
 msgstr "إضافة"
 
 #: src/Admin/Poll/Editor.php:251
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr "لم يتم إضافة حقول بعد. يمكن إضافة حقول عبر الأزرار بالأسفل."
 
 #: src/Admin/Poll/Editor.php:252

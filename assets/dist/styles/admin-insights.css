@@ -46,3 +46,10 @@
         text-align: center; }
   #totalpoll-insights .totalpoll-box {
     margin-bottom: 1rem; }
+  body.is-ltr #totalpoll-insights .totalpoll-insights-header-export {
+    margin-left: 1rem; }
+  body.is-rtl #totalpoll-insights .totalpoll-insights-header-export {
+    margin-right: 1rem; }
+  #totalpoll-insights .totalpoll-insights-header-export span {
+    margin: 0 0.75rem;
+    color: #777777; }

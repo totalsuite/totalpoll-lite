@@ -1239,7 +1239,7 @@ msgid "Insert"
 msgstr "डालें"
 
 #: Admin/Poll/views/choices/choices.php:170
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr "अभी तक कोई विकल्प नहीं बटनों पर क्लिक करके कुछ जोड़ें।"
 
 #: Admin/Poll/views/choices/choices.php:188 Admin/Poll/views/form/fields.php:127
@@ -1845,7 +1845,7 @@ msgid "One field per line."
 msgstr "प्रति पंक्ति एक फ़ील्ड।"
 
 #: Admin/Poll/views/form/fields.php:114
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr "अभी तक कोई कस्टम फ़ील्ड नहीं है। बटनों पर क्लिक करके कुछ जोड़ें।"
 
 #: Admin/Poll/views/integration/email.php:8

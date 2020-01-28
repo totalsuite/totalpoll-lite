@@ -1285,7 +1285,7 @@ msgid "Insert"
 msgstr "Vlož"
 
 #: Admin/Poll/views/choices/choices.php:170
-msgid "No choices yet. Add some by clicking on buttons bellow."
+msgid "No choices yet. Add some by clicking on buttons below."
 msgstr ""
 "Nie sú pridané žiadne odpovede. Pridaj odpoveď kliknutím na tlačítko nižšie."
 
@@ -1874,7 +1874,7 @@ msgid "One field per line."
 msgstr "Jedno pole na riadok."
 
 #: Admin/Poll/views/form/fields.php:114
-msgid "No custom fields yet. Add some by clicking on buttons bellow."
+msgid "No custom fields yet. Add some by clicking on buttons below."
 msgstr "Žiadne vlastné pole. Pridaj nejaké kliknutím na tlačítko nižšie."
 
 #: Admin/Poll/views/integration/email.php:8

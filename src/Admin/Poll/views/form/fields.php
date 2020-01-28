@@ -111,7 +111,7 @@
             </div>
 
             <div class="totalpoll-empty-state" ng-if="$ctrl.items.length === 0">
-                <div class="totalpoll-empty-state-text"><?php _e( 'No custom fields yet. Add some by clicking on buttons bellow.', 'totalpoll' ); ?></div>
+                <div class="totalpoll-empty-state-text"><?php _e( 'No custom fields yet. Add some by clicking on buttons below.', 'totalpoll' ); ?></div>
             </div>
 
             <div class="totalpoll-containable-list"
