@@ -504,6 +504,14 @@ class Model implements Renderable, ModelContract {
 			)
 		);
 
+		$this->setSettingsItem(
+			'results.message',
+			$this->getSettingsItem(
+				"results.translations.{$locale}.message",
+				$this->getSettingsItem( 'results.message' )
+			)
+		);
+
 		/**
 		 * Fires after poll model setup is completed.
 		 *
@@ -1039,7 +1047,7 @@ class Model implements Renderable, ModelContract {
 		$votes      = $this->questions[ $this->choicesMap[ $choiceUid ] ]['choices'][ $choiceUid ]['votes'];
 		$totalVotes = $this->questions[ $this->choicesMap[ $choiceUid ] ]['votes'];
 
-		return $totalVotes ? number_format( ( $votes / $totalVotes ) * 100, 2 ) : '0.00';
+		return $totalVotes ? number_format( ( $votes/$totalVotes ) * 100, 2 ) : '0.00';
 	}
 
 	/**
@@ -1099,7 +1107,7 @@ class Model implements Renderable, ModelContract {
 	public function getColumnWidth() {
 		$perRow = $this->getSettingsItem( 'design.layout.columns', 4 );
 
-		return 100 / $perRow;
+		return 100/$perRow;
 	}
 
 	/**
@@ -1410,7 +1418,7 @@ class Model implements Renderable, ModelContract {
 		 * @return array
 		 * @since 4.0.0
 		 */
-		return apply_filters( 'totalpoll / filters / poll / has - voted', is_wp_error( $this->getRestrictions()->check() ) || $this->getRestrictions()->isApplied() || did_action( 'totalpoll / actions / after / poll / command / vote' ), $this );
+		return apply_filters( 'totalpoll/filters/poll/has-voted', is_wp_error( $this->getRestrictions()->check() ) || $this->getRestrictions()->isApplied() || did_action( 'totalpoll/actions/after/poll/command/vote' ), $this );
 	}
 
 	/**
@@ -1480,7 +1488,7 @@ class Model implements Renderable, ModelContract {
 		 * @return bool
 		 * @since 4.0.0
 		 */
-		return apply_filters( 'totalpoll / filters / poll / accept - vote', ! is_wp_error( $this->error ), $this );
+		return apply_filters( 'totalpoll/filters/poll/accept-vote', ! is_wp_error( $this->error ), $this );
 	}
 
 	/**
@@ -1489,13 +1497,14 @@ class Model implements Renderable, ModelContract {
 	 * @return bool
 	 */
 	public function isResultsHidden() {
-		$visibility = $this->getSettingsItem( 'results . visibility' );
+		$visibility = $this->getSettingsItem( 'results.visibility' );
 
 		
 		$hidden = $visibility === 'voters' && !$this->hasVoted();
 		
 
 		
+
 
 		/**
 		 * Filters the poll results visibility.
@@ -1506,7 +1515,7 @@ class Model implements Renderable, ModelContract {
 		 * @return bool
 		 * @since 4.0.0
 		 */
-		return apply_filters( 'totalpoll / filters / poll / results - hidden', $hidden, $this );
+		return apply_filters( 'totalpoll/filters/poll/results-hidden', $hidden, $this );
 	}
 
 	/**
@@ -1693,7 +1702,13 @@ class Model implements Renderable, ModelContract {
 	 * @since 1.0.0
 	 */
 	private function orderByPosition( $current, $next ) {
-		return 0;
+		if ( $current['index'] === $next['index'] ):
+			return 0;
+		elseif ( $current['index'] < $next['index'] ):
+			return - 1;
+		else:
+			return 1;
+		endif;
 	}
 
 	/**
@@ -1716,7 +1731,7 @@ class Model implements Renderable, ModelContract {
 	public function addChoice( $choice, $questionUid, $persistent = true ) {
 		$question = $this->getQuestion( $questionUid );
 		$choice   = Arrays::parse( $choice, [
-			'uid'           => 'custom - ' . Misc::generateUid(),
+			'uid'           => 'custom-' . Misc::generateUid(),
 			'type'          => 'text',
 			'label'         => '',
 			'visibility'    => true,

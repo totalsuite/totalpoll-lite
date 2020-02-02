@@ -39,41 +39,41 @@
             </tr>
             <tr>
 				<?php foreach ( $columns as $columnId => $column ): ?>
-                    <th scope="col" <?php if ( empty( $column['compact'] ) ): ?>class="totalpoll-log-browser-list-collapsed"<?php endif; ?> ng-show="$ctrl.columns.<?php echo esc_attr( $columnId ); ?>"><?php echo esc_html( $column['label'] ); ?></th>
+                    <th scope="col" <?php if ( empty( $column['compact'] ) ): ?>class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>"<?php endif; ?> ng-show="$ctrl.columns.<?php echo esc_attr( $columnId ); ?>"><?php echo esc_html( $column['label'] ); ?></th>
 				<?php endforeach; ?>
-                <th scope="col" class="totalpoll-log-browser-list-collapsed"><?php echo _e( 'Actions', 'totalpoll' ); ?></th>
+                <th scope="col" class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-actions"><?php echo _e( 'Actions', 'totalpoll' ); ?></th>
             </tr>
             </thead>
             <tbody>
             <tr class="totalpoll-log-browser-list-item" ng-repeat="item in $ctrl.items track by $index">
 				<?php foreach ( $columns as $columnId => $column ): ?>
 					<?php if ( $columnId === 'status' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-class="{'success': item.isAccepted(), 'error': item.isRejected()}" ng-show="$ctrl.columns.status">{{item.getStatus()}}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-class="{'success': item.isAccepted(), 'error': item.isRejected()}" ng-show="$ctrl.columns.status">{{item.getStatus()}}</td>
 					<?php elseif ( $columnId === 'action' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.action">{{item.getAction()}}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.action">{{item.getAction()}}</td>
 					<?php elseif ( $columnId === 'date' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.date" title="{{item.getDate()|date:'yyyy-MM-dd @ HH:mm'}} (<?php esc_attr_e( 'Local Time', 'totalpoll' ); ?>)">{{ item.getUTCDate() }} (UTC)</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.date" title="{{item.getDate()|date:'yyyy-MM-dd @ HH:mm'}} (<?php esc_attr_e( 'Local Time', 'totalpoll' ); ?>)">{{ item.getUTCDate() }} (UTC)</td>
 					<?php elseif ( $columnId === 'poll' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.poll"><a target="_blank" ng-href="{{item.getPollEditLink()}}">{{item.getPollTitle()}}</a></td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.poll"><a target="_blank" ng-href="{{item.getPollEditLink()}}">{{item.getPollTitle()}}</a></td>
 					<?php elseif ( $columnId === 'user_id' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.user_id">{{item.getUser('id') || 'N/A' }}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.user_id">{{item.getUser('id') || 'N/A' }}</td>
 					<?php elseif ( $columnId === 'user_login' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.user_login">{{item.getUser('login') || 'N/A'}}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.user_login">{{item.getUser('login') || 'N/A'}}</td>
 					<?php elseif ( $columnId === 'user_name' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.user_name">{{item.getUser('name') || 'Anonymous'}}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.user_name">{{item.getUser('name') || 'Anonymous'}}</td>
 					<?php elseif ( $columnId === 'user_email' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.user_email">{{item.getUser('email') || 'N/A'}}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.user_email">{{item.getUser('email') || 'N/A'}}</td>
 					<?php elseif ( $columnId === 'browser' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.browser">{{(item.getUseragent()|platform).description}}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.browser">{{(item.getUseragent()|platform).description}}</td>
 					<?php elseif ( $columnId === 'ip' ): ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns.ip">{{item.getIP()}}</td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.ip">{{item.getIP()}}</td>
 					<?php elseif ( $columnId === 'details' ): ?>
-                        <td class="totalpoll-log-browser-list-compact" ng-show="$ctrl.columns.details" ng-bind-html="item.getDetails()|table"></td>
+                        <td class="totalpoll-log-browser-list-compact totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns.details" ng-bind-html="item.getDetails()|table"></td>
 					<?php else: ?>
-                        <td class="totalpoll-log-browser-list-collapsed" ng-show="$ctrl.columns['<?php echo esc_attr( $columnId ); ?>']"><?php echo empty( $column['content'] ) ? '' : $column['content']; ?></td>
+                        <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-<?php echo esc_attr($columnId); ?>" ng-show="$ctrl.columns['<?php echo esc_attr( $columnId ); ?>']"><?php echo empty( $column['content'] ) ? '' : $column['content']; ?></td>
 					<?php endif; ?>
 				<?php endforeach; ?>
-                <td class="totalpoll-log-browser-list-collapsed">
+                <td class="totalpoll-log-browser-list-collapsed totalpoll-log-browser-list-column-actions">
                     <button type="button" class="button button-small widefat" type="button" ng-click="$ctrl.openItem(item)"><?php _e( 'Open', 'totalpoll' ); ?></button>
                 </td>
             </tr>

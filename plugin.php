@@ -3,7 +3,7 @@
  * Plugin Name: TotalPoll – Lite
  * Plugin URI: https://totalsuite.net/products/totalpoll/
  * Description: Yet another powerful poll plugin for WordPress.
- * Version: 4.1.3
+ * Version: 4.1.4
  * Author: TotalSuite
  * Author URI: https://totalsuite.net/
  * Text Domain: totalpoll
@@ -15,7 +15,7 @@
  * @package TotalPoll
  * @category Core
  * @author TotalSuite
- * @version 4.1.3
+ * @version 4.1.4
  */
 
 // Root plugin file name

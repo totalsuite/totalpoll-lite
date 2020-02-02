@@ -386,7 +386,8 @@
           display: block;
           border: 2px dashed #bbbbbb;
           color: #bbbbbb;
-          text-align: center; }
+          text-align: center;
+          min-height: 68px; }
         #totalpoll-poll-editor .totalpoll-questions-list-tabs-item-title {
           flex: 1;
           font-size: 16px; }
@@ -395,8 +396,6 @@
             font-size: 10px;
             color: #777777;
             text-transform: uppercase; }
-        #totalpoll-poll-editor .totalpoll-questions-list-tabs-item .button-danger {
-          display: none; }
         #totalpoll-poll-editor .totalpoll-questions-list-tabs-item:hover, #totalpoll-poll-editor .totalpoll-questions-list-tabs-item:focus {
           background: white; }
         #totalpoll-poll-editor .totalpoll-questions-list-tabs-item.active {
@@ -1126,6 +1125,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap; }
+    #totalpoll-poll-editor .totalpoll-settings-timeout + input {
+      margin-top: 1rem; }
   #totalpoll-poll-editor .totalpoll-settings-timeout-value {
     width: 20%;
     margin: 0.5rem 0; }

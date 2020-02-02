@@ -109,6 +109,14 @@
                           ng-model="editor.settings.content.results.translations[$ctrl.language.code].below"></textarea>
             </td>
         </tr>
+        <tr ng-if="editor.settings.results.message.length">
+            <td>{{editor.settings.results.message}}</td>
+            <td>
+                <textarea name="" rows="1" class="widefat"
+                          ng-style="{direction: $ctrl.language.direction}"
+                          ng-model="editor.settings.results.translations[$ctrl.language.code].message"></textarea>
+            </td>
+        </tr>
         <tr>
             <td colspan="2">
 				<?php _e( 'SEO', 'totalpoll' ); ?>

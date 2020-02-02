@@ -109,6 +109,11 @@ class Page extends AdminPageContract {
 									__( 'Continue to vote', 'totalpoll' ),
 								],
 							],
+							'Continue to results' => [
+								'translations' => [
+									__( 'Continue to results', 'totalpoll' ),
+								],
+							],
 						],
 				],
 				'fields'      => [

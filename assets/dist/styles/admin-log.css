@@ -333,3 +333,5 @@
           background: #f1f1f1; }
         #totalpoll-log .totalpoll-log-browser-modal-content table.widefat th, #totalpoll-log .totalpoll-log-browser-modal-content table.widefat td {
           border-right-color: #f1f1f1; }
+  #totalpoll-log .totalpoll-log-browser-list-column-details {
+    overflow: hidden; }

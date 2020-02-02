@@ -8,7 +8,7 @@ return apply_filters(
 	'totalpoll/filters/environment',
 	array(
 		'name'           => 'TotalPoll',
-		'version'        => '4.1.3',
+		'version'        => '4.1.4',
 		'versions'       => array(
 			'wp'    => $GLOBALS['wp_version'],
 			'php'   => PHP_VERSION,
@@ -53,7 +53,7 @@ return apply_filters(
 			'my-account'     => admin_url( 'edit.php?post_type=poll&page=dashboard&tab=dashboard>my-account' ),
 			'upgrade-to-pro' => admin_url( 'edit.php?post_type=poll&page=upgrade-to-pro' ),
 			'signin-account' => 'https://totalsuite.net/ext/auth/signin',
-			'changelog'      => 'https://totalsuite.net/product/totalpoll/changelog/#version-4.1.3',
+			'changelog'      => 'https://totalsuite.net/product/totalpoll/changelog/#version-4.1.4',
 			'website'        => 'https://totalsuite.net/product/totalpoll/',
 			'support'        => 'https://totalsuite.net/support/',
 			'customization'  => 'https://totalsuite.net/services/new/?department=25',

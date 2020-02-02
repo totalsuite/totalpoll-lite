@@ -1,10 +1,10 @@
 === Total Poll Lite ===
-Contributors: totalsuite, wpstore, misqtech
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=2TUK8TNJMK4SL&lc=AE&item_name=MisqTech&item_number=WPORG&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Tags: poll, contest, dilemma, image, polling, marketing, opinion, poll builder, create poll, custom poll, poll widget, poll archive, easy, intuitive, online poll, poll post, poll page, collect answers, choices, answers, question, rtl, shortcode, template, video, vote, widget, wp-polls, yop poll, feedback, poll form, single question survey, drag and drop, questionnaire, poll tool, vote, election, voting, opinionstage, polldaddy, mobile friendly, mobile first, poll post type, results, contestant, flash poll, poll directory, statistics, logs, submissions, templates, extensions, extensible, limitations
+Contributors: totalsuite
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=2TUK8TNJMK4SL&lc=AE&item_name=MisqTech&item_number=WPORG&no_note=1&no_shipping=1¤cy_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
+Tags: poll, polls, contest, questionnaire, poll tool, vote, election, voting, dilemma, image, polling, marketing, opinion, poll builder, create poll, custom poll, poll widget, poll archive, easy, intuitive, online poll, poll post, poll page, collect answers, choices, answers, question, rtl, shortcode, template, video, vote, widget, wp-polls, yop poll, feedback, poll form, single question survey, drag and drop, opinionstage, polldaddy, mobile friendly, mobile first, poll post type, results, contestant, flash poll, poll directory, statistics, logs, submissions, templates, extensions, extensible, limitations
 Requires at least: 4.6.0
 Requires PHP: 5.5
-Tested up to: 5.3
+Tested up to: 5.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,71 +12,77 @@ TotalPoll is a WordPress poll plugin that helps you get instant feedback from yo
 
 == Description ==
 
-### TotalPoll WordPress Poll Plugin
+## TotalPoll WordPress Poll Plugin
 
-TotalPoll is a powerful WordPress poll plugin that lets you create and integrate polls easily. It provides several options and features to enable you have full control over the polls, and has been made very easier for you to use.
+TotalPoll is a powerful WordPress poll plugin that lets you create and integrate polls easily. It provides several options and features to enable you have full control over the polls, and has been made very easier for you to use. TotalPoll is a product of [TotalSuite.net](https://totalsuite.net/?utm_source=wp-org&utm_medium=description&utm_campaign=totalpoll-lite), a suite of robust, maintained and secure plugins and add-ons for WordPress that helps you generate more value for your business.
 
-For more details, please visit the [official website](https://totalsuite.net/products/totalpoll/?utm_source=wp-org&utm_medium=description&utm_campaign=totalpoll-lite)
+For more details and more completed overview, visit the [TotalPoll Official Website](https://totalsuite.net/products/totalpoll/?utm_source=wp-org&utm_medium=description&utm_campaign=totalpoll-lite).
 
-###Demos
+Are you planning to launch a contest? [TotalContest](https://wordpress.org/plugins/totalcontest-lite/) is a powerful WordPress contest plugin dedicated to run and manage contests and competitions on your website.
+
+## Demos
 ---
 Please visit our [demos gallery](https://totalsuite.net/product/totalpoll/demo/)  to see all available features.
 
 **Basics**
-* [Simple poll](https://totalsuite.net/product/totalpoll/demo/simple-poll/)
-* [PRO] [Image contest](https://totalsuite.net/product/totalpoll/demo/image-contest/)
-* [PRO] [Video contest](https://totalsuite.net/product/totalpoll/demo/video-contest/)
-* [PRO] [Audio contest](https://totalsuite.net/product/totalpoll/demo/simple-poll/)
+1. [Simple poll](https://totalsuite.net/product/totalpoll/demo/simple-poll/)
+2. [Image contest](https://totalsuite.net/product/totalpoll/demo/image-contest/)
+3. [Video contest](https://totalsuite.net/product/totalpoll/demo/video-contest/)
+4. [Audio contest](https://totalsuite.net/product/totalpoll/demo/simple-poll/)
 
 ---
 
 **Limitations & Restrictions**
-* [Date limited](https://totalsuite.net/product/totalpoll/demo/date-limited/)
-* [PRO] [IP Restricted](https://totalsuite.net/product/totalpoll/demo/ip-restricted/)
-* [PRO] [Members only](https://totalsuite.net/product/totalpoll/demo/members-only/)
-* [PRO] [Quota limited](https://totalsuite.net/product/totalpoll/demo/quota-limited/)
-* [PRO] [reCaptcha](https://totalsuite.net/product/totalpoll/demo/recaptcha/)
+1. [Date limited](https://totalsuite.net/product/totalpoll/demo/date-limited/)
+2. [IP Restricted](https://totalsuite.net/product/totalpoll/demo/ip-restricted/)
+3. [Members only](https://totalsuite.net/product/totalpoll/demo/members-only/)
+4. [Quota limited](https://totalsuite.net/product/totalpoll/demo/quota-limited/)
+5. [reCaptcha](https://totalsuite.net/product/totalpoll/demo/recaptcha/)
 
 
   ---
 
 **Choices**
-* [Multiple selection](https://totalsuite.net/product/totalpoll/demo/multiple-selection/)
-* [PRO] [Other field](https://totalsuite.net/product/totalpoll/demo/other-field/)
-* [PRO] [Shuffled choices](https://totalsuite.net/product/totalpoll/demo/shuffled-choices/)
+1. [Multiple selection](https://totalsuite.net/product/totalpoll/demo/multiple-selection/)
+2. [Other field](https://totalsuite.net/product/totalpoll/demo/other-field/)
+3. [Shuffled choices](https://totalsuite.net/product/totalpoll/demo/shuffled-choices/)
 
 
   ---
 
 
 **Results**
-* [Blind poll](https://totalsuite.net/product/totalpoll/demo/blind-poll/)
-* [Votes count](https://totalsuite.net/product/totalpoll/demo/votes-count/)
-* [PRO] [Hidden results](https://totalsuite.net/product/totalpoll/demo/hidden-results/)
+1. [Blind poll](https://totalsuite.net/product/totalpoll/demo/blind-poll/)
+2. [Votes count](https://totalsuite.net/product/totalpoll/demo/votes-count/)
+3. [Hidden results](https://totalsuite.net/product/totalpoll/demo/hidden-results/)
 
 
   ---
 
 **Other**
-* [Custom fields](https://totalsuite.net/product/totalpoll/demo/custom-fields/)
-* [Welcome & thank you message](https://totalsuite.net/product/totalpoll/demo/welcome-thank-you-message/)
-* [Above & below content](https://totalsuite.net/product/totalpoll/demo/above-below-content/)
-* [Multiple questions](https://totalsuite.net/product/totalpoll/demo/multiple-questions/)
-* [Custom font and colors](https://totalsuite.net/product/totalpoll/demo/custom-font-and-colors/)
+1. [Custom fields](https://totalsuite.net/product/totalpoll/demo/custom-fields/)
+2. [Welcome & thank you message](https://totalsuite.net/product/totalpoll/demo/welcome-thank-you-message/)
+3. [Above & below content](https://totalsuite.net/product/totalpoll/demo/above-below-content/)
+4. [Multiple questions](https://totalsuite.net/product/totalpoll/demo/multiple-questions/)
+5. [Custom font and colors](https://totalsuite.net/product/totalpoll/demo/custom-font-and-colors/)
+
+**Behaviors**
+1. [One-click](https://totalsuite.net/product/totalpoll/demo/one-click-vote/)
+2. [Sequential questions](https://totalsuite.net/product/totalpoll/demo/sequential-questions/)
 
 ---
 
 **Templates**
-* [PRO] [Opinion](https://totalsuite.net/product/totalpoll/demo/opinion/)
-* [PRO] [Debate](https://totalsuite.net/product/totalpoll/demo/debate/)
-* [PRO] [Media Contest](https://totalsuite.net/product/totalpoll/demo/media-contest/)
-* [PRO] [Facebook Like](https://totalsuite.net/product/totalpoll/demo/facebook-like/)
-* [PRO] [Twitter Like](https://totalsuite.net/product/totalpoll/demo/twitter-like/)
-* [PRO] [Versus](https://totalsuite.net/product/totalpoll/demo/versus/)
+1. [Opinion](https://totalsuite.net/product/totalpoll/demo/opinion/)
+2. [Debate](https://totalsuite.net/product/totalpoll/demo/debate/)
+3. [Media Contest](https://totalsuite.net/product/totalpoll/demo/media-contest/)
+4. [Facebook Like](https://totalsuite.net/product/totalpoll/demo/facebook-like/)
+5. [Twitter Like](https://totalsuite.net/product/totalpoll/demo/twitter-like/)
+6. [Versus](https://totalsuite.net/product/totalpoll/demo/versus/)
 
-### Features
+## Features
 ---
-### User Friendly
+## User Friendly
 Making polls shouldn't be rocket science!
 
 **1. Drag & Drop**
@@ -89,7 +95,7 @@ Elements were organized for you to make it super simple to create polls with min
 Whether you launch a simple poll, image poll or other, the editor helps you get started in no time.
 
 
-### Optimized for Mobile
+## Optimized for Mobile
 Your polls will always look good everywhere!
 
 **1. Responsive Design**
@@ -101,7 +107,7 @@ Assuring an best experience by implementing best practices in the industry.
 **3. Cross-Platform**
 Optimized experience across different known operating systems such Android, iOs and Windows Phone.
 
-### Essentials Built-in
+## Essentials Built-in
 Multiple built-in features for limitless possibilities.
 
 **1. Multiple Questions**
@@ -113,7 +119,7 @@ Whether your content is a text, image, video, audio or even plain HTML, TotalPol
 **3. Restrictions & Limitations**
 Control exactly who should be able to vote in your poll and how many times with timeout settings.
 
-### Optimized for Search Engines
+## Optimized for Search Engines
 Gain more organic search engine traffic with TotalPoll.
 
 **1. Sitemap**
@@ -125,7 +131,7 @@ Get more attention in search engines results thanks to the implementation of Str
 **3. Compatibility**
 TotalPoll is compatible with popular WordPress seo plugins such Yoast's, All-in-one SEO and others.
 
-### Insightful Data
+## Insightful Data
 Collect and browse data the easy way!
 
 **1. Custom Fields**
@@ -138,7 +144,7 @@ Browse every request sent to TotalPoll through a simple interface.
 Get a visual overview of your poll, thanks to insights graphs generated by TotalPoll.
 
 
-### Beautiful & Customizable Design
+## Beautiful & Customizable Design
 Make your polls look compelling and customize its design easily.
 
 **1. Customizer**
@@ -150,7 +156,7 @@ Get an instant preview of your poll design with the live preview feature.
 **3. Controllable Behaviours**
 Control any behaviour of your polls such AJAX, One-click vote and others easily through settings panel.
 
-### Secure & Reliable
+## Secure & Reliable
 TotalPoll is a plugin that you can rely on.
 
 **1. Secure**
@@ -162,7 +168,7 @@ TotalPoll receives updates regularly to keep it stable and to give you a bug-fre
 **3. Performance**
 Designed to operate under different loads, TotalPoll can scale with WordPress seamlessly.
 
-### Developer Friendly
+## Developer Friendly
 Built using the APIs you're already familiar with.
 
 **1. Extensible**
@@ -175,7 +181,7 @@ Explore polls data and interact with TotalPoll easily through WordPress REST API
 Extensive documentation about available actions and filters to streamline your development experience.
 
 
-### Translations
+## Translations
 
 Help us translate TotalPoll to your language and get 1 year of premium support and a pack of premium templates and extensions.
 
@@ -192,10 +198,10 @@ Help us translate TotalPoll to your language and get 1 year of premium support a
 - Portuguese [ 100% ]
 - Polish [ 0% ]
 
-### Knowledge Base
+## Knowledge Base
 The [knowledge base](https://totalsuite.net/product/totalpoll/documentation/) cover every aspect of TotalPoll functionality and provide a step-by-step tutorials ang guides to get started with TotalPoll in almost no time.
 
-### Customer Support
+## Customer Support
 [Customer support](https://totalsuite.net/forums/) is our most important priority that's why ~70% of reviews are about support quality. We take this responsibility very seriously.
 
 

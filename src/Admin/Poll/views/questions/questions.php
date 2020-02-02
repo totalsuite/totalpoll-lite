@@ -25,10 +25,11 @@
 						<?php _e( 'Choices', 'totalpoll' ); ?>
                     </small>
                 </div>
-                <button class="button button-danger button-small" type="button"
-                        ng-hide="$ctrl.items.length < 2"
-                        ng-click="$ctrl.deleteQuestion($index, false, true)">
-					<?php _e( 'Delete', 'totalpoll' ); ?>
+                <button class="button button-danger button-icon button-small" type="button"
+                        ng-disabled="$ctrl.items.length < 2"
+                        ng-click="$ctrl.deleteQuestion($index, false, true)"
+                        title="<?php esc_attr_e( 'Delete', 'totalpoll' ); ?>">
+                    <span class="dashicons dashicons-trash"></span>
                 </button>
 				<?php
 				/**
